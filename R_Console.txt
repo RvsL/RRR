@@ -1012,8 +1012,4 @@ downloaded 1.0 MB
 > write.csv(a.cor,"/users/rvsl/a-cor.csv",row.names=F,quote=F)
 > write.csv(a,"/users/rvsl/card-data.csv",row.names=F,quote=F)
 > setwd("/users/rvsl/RRR/")
-> setwd(/users/rvsl/RRR/)
-Ошибка: неожиданный '/' in "setwd(/"
-> getwd()
-[1] "/Users/RvsL/RRR"
 > 
