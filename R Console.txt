@@ -1,0 +1,1015 @@
+> tmp
+          СрокЗаймаФактический                 СуммаПогашения 
+                  0.7414342768                   0.5535346488 
+                 ВыданнаяСумма                 МаксСуммаПоТек 
+                  0.4257431314                   0.1974488448 
+                       ЕстьБРС                        ЕстьОКБ 
+                  0.1734372734                   0.1678786664 
+             КолСвСофтПоРабТел              КолСвХардПоРабТел 
+                  0.0902277891                   0.0897925213 
+                  ЕстьЭквифакс   КолОбращенийЗаКредитами_1мес 
+                  0.0891535286                   0.0872326187 
+          Контакты_ДомТелефон1    СрокПослеПоследнЗакрКредита 
+                  0.0781853610                   0.0720256468 
+       КолСвВыдПогашенПоРабТел   ВремяЖизниМобильногоТелефона 
+                  0.0666748836                   0.0655223683 
+     КолСвВыдОтклоненаПоРабТел          КолСвВыданныеПоРабТел 
+                  0.0499789541                   0.0493797773 
+       ОтветпоКИпогашенныеЕСТЬ                   КолПросрочКК 
+                  0.0419820959                   0.0407354644 
+  КолСвВыдОтклоненаПоАдресуРег                  КолСвПоРабТел 
+                  0.0369949439                   0.0363251725 
+            КолТехнПросроч3Мес                     КолМЗ_3мес 
+                  0.0294348850                   0.0291647661 
+           Контакты_МобТелефон                ПлатежейБП_6мес 
+                  0.0281901296                   0.0274817525 
+                   СтавкаВДень           КолСвСофтПоАдресуРег 
+                  0.0232483959                   0.0227415659 
+                Контакты_Скайп                НетПросрочкиАкт 
+                  0.0200503613                   0.0183175026 
+              КолСвПоАдресуРег                  КолАктивныхКК 
+                  0.0170917604                   0.0162297883 
+                    КолМЗ_6мес           ФактКИ_МаксСрокПоТек 
+                  0.0142216899                   0.0128446976 
+       МаксимальныйСрокКредита                  КолАктивныхМЗ 
+                  0.0124644717                   0.0047041440 
+         ФактКИ_МаксСуммаПоТек               ЕжемесячныйДоход 
+                  0.0007044426                  -0.0006956529 
+       КолПросрочки_1_30_погаш                       НеЗакрыт 
+                 -0.0006981093                  -0.0020572463 
+      КолСвВыданныеПоАдресуРег           КолСвХардПоАдресуРег 
+                 -0.0024349383                  -0.0033365882 
+          КоличествоПривязКарт         МинимальныйСрокКредита 
+                 -0.0047577738                  -0.0064434479 
+                 КолТекПросрМЗ   КолОбращенийЗаКредитами_6мес 
+                 -0.0072771641                  -0.0076727878 
+         КолПросрочки_60_погаш                  КолСвПоМобТел 
+                 -0.0083149523                  -0.0094399525 
+             КолСвХардПоМобТел              КолСвСофтПоМобТел 
+                 -0.0094399525                  -0.0094399525 
+         КолСвВыданныеПоМобТел      КолСвВыдОтклоненаПоМобТел 
+                 -0.0094399525                  -0.0094399525 
+       КолСвВыдПогашенПоМобТел                     КолСвПоДру 
+                 -0.0094399525                  -0.0094399525 
+                КолСвХардПоДру                 КолСвСофтПоДру 
+                 -0.0094399525                  -0.0094399525 
+            КолСвВыданныеПоДру         КолСвВыдОтклоненаПоДру 
+                 -0.0094399525                  -0.0094399525 
+          КолСвВыдПогашенПоДру                     ЕстьКронос 
+                 -0.0094399525                  -0.0094399525 
+    КолСвВыдПогашенПоАдресуРег     КолСвВыдОтклоненаПоАнализу 
+                 -0.0111994836                  -0.0135432235 
+         КолПросрочки_90_погаш ОбщСуммаДолгаПоПросрочКредитам 
+                 -0.0157240697                  -0.0176954225 
+              СуммарныйЛимитКК                КоличествоДетей 
+                 -0.0195581775                  -0.0195670202 
+            ЗапрашиваемаяСумма      КолСвВыдОтклоненаПоДомТел 
+                 -0.0209913265                  -0.0231834547 
+             КолСвХардПоДомТел              КолСвСофтПоДомТел 
+                 -0.0246569722                  -0.0252783502 
+   МинНомер1гоПлатСПросрочкАкт        КолСвВыдПогашенПоДомТел 
+                 -0.0254072736                  -0.0273193422 
+                  СуммаТекущих  ОбщСуммаДолгаПоДействКредитам 
+                 -0.0280876544                  -0.0292596715 
+                 КолСвПоДомТел       КолСвВыдПогашенПоАнализу 
+                 -0.0296815537                  -0.0297413920 
+         КолСвВыданныеПоДомТел             КолСвСофтПоАнализу 
+                 -0.0305593484                  -0.0317821929 
+            КолСвХардПоАнализу         КолСвВыданныеПоАнализу 
+                 -0.0322275685                  -0.0333332647 
+                КолСвПоАнализу                         Закрыт 
+                 -0.0334699248                  -0.0335974194 
+                     КолСвПоip            КолСвВыдПогашенПоip 
+                 -0.0362686034                  -0.0387515793 
+             НетПросрочкиПогаш      КолСвВыданныеПоАдресуФакт 
+                 -0.0400685402                  -0.0420736567 
+ КолСвВыдОтклоненаПоАдресуФакт              КолСвПоАдресуФакт 
+                 -0.0420767387                  -0.0427543105 
+         КолСвСофтПоАдресуФакт                      КолСвязок 
+                 -0.0428398629                  -0.0428951495 
+         КолСвХардПоАдресуФакт              КолСвВыданныеПоip 
+                 -0.0434998750                  -0.0436095303 
+   КолСвВыдПогашенПоАдресуФакт            СрокЗаймаПоДоговору 
+                 -0.0444410954                  -0.0492614389 
+             КредитнаяНагрузка           МаксПросрочка_за6мес 
+                 -0.0520467809                  -0.0522892033 
+                 КолСвХардПоip   ФактАдресСовпадаетСРегАдрес2 
+                 -0.0532324508                  -0.0553933954 
+                 КолСвСофтПоip                        Возраст 
+                 -0.0556864334                  -0.0580620659 
+КолПросрочексвыше30дней_за6мес              ОбщееКолПросрочек 
+                 -0.0593989609                  -0.0595274707 
+           КолПросрочки_90_акт          КолСвВыдОтклоненаПоip 
+                 -0.0618666859                  -0.0625727816 
+           КолТекущихПросрочек           МаксТекПросрочкаДней 
+                 -0.0647424595                  -0.0655781541 
+           КолПросрочки_60_акт            КолПросрочки_30_акт 
+                 -0.0682055462                  -0.0722710159 
+            КолПросрочки_1_акт                Продан_90_36мес 
+                 -0.0809629487                  -0.1155895886 
+        вбАвтоматичекоеРешение 
+                 -0.2026900116 
+> tmp <- a.cor.v.val %>% abs %>% sort
+> plot(tmp)
+> text(tmp,names(tmp),cex=0.6, pos=4, col="red",srt=90)
+> tmp %>% sort(T)
+          СрокЗаймаФактический                 СуммаПогашения 
+                  0.7414342768                   0.5535346488 
+                 ВыданнаяСумма         вбАвтоматичекоеРешение 
+                  0.4257431314                   0.2026900116 
+                МаксСуммаПоТек                        ЕстьБРС 
+                  0.1974488448                   0.1734372734 
+                       ЕстьОКБ                Продан_90_36мес 
+                  0.1678786664                   0.1155895886 
+             КолСвСофтПоРабТел              КолСвХардПоРабТел 
+                  0.0902277891                   0.0897925213 
+                  ЕстьЭквифакс   КолОбращенийЗаКредитами_1мес 
+                  0.0891535286                   0.0872326187 
+            КолПросрочки_1_акт           Контакты_ДомТелефон1 
+                  0.0809629487                   0.0781853610 
+           КолПросрочки_30_акт    СрокПослеПоследнЗакрКредита 
+                  0.0722710159                   0.0720256468 
+           КолПросрочки_60_акт        КолСвВыдПогашенПоРабТел 
+                  0.0682055462                   0.0666748836 
+          МаксТекПросрочкаДней   ВремяЖизниМобильногоТелефона 
+                  0.0655781541                   0.0655223683 
+           КолТекущихПросрочек          КолСвВыдОтклоненаПоip 
+                  0.0647424595                   0.0625727816 
+           КолПросрочки_90_акт              ОбщееКолПросрочек 
+                  0.0618666859                   0.0595274707 
+КолПросрочексвыше30дней_за6мес                        Возраст 
+                  0.0593989609                   0.0580620659 
+                 КолСвСофтПоip   ФактАдресСовпадаетСРегАдрес2 
+                  0.0556864334                   0.0553933954 
+                 КолСвХардПоip           МаксПросрочка_за6мес 
+                  0.0532324508                   0.0522892033 
+             КредитнаяНагрузка      КолСвВыдОтклоненаПоРабТел 
+                  0.0520467809                   0.0499789541 
+         КолСвВыданныеПоРабТел            СрокЗаймаПоДоговору 
+                  0.0493797773                   0.0492614389 
+   КолСвВыдПогашенПоАдресуФакт              КолСвВыданныеПоip 
+                  0.0444410954                   0.0436095303 
+         КолСвХардПоАдресуФакт                      КолСвязок 
+                  0.0434998750                   0.0428951495 
+         КолСвСофтПоАдресуФакт              КолСвПоАдресуФакт 
+                  0.0428398629                   0.0427543105 
+ КолСвВыдОтклоненаПоАдресуФакт      КолСвВыданныеПоАдресуФакт 
+                  0.0420767387                   0.0420736567 
+       ОтветпоКИпогашенныеЕСТЬ                   КолПросрочКК 
+                  0.0419820959                   0.0407354644 
+             НетПросрочкиПогаш            КолСвВыдПогашенПоip 
+                  0.0400685402                   0.0387515793 
+  КолСвВыдОтклоненаПоАдресуРег                  КолСвПоРабТел 
+                  0.0369949439                   0.0363251725 
+                     КолСвПоip                         Закрыт 
+                  0.0362686034                   0.0335974194 
+                КолСвПоАнализу         КолСвВыданныеПоАнализу 
+                  0.0334699248                   0.0333332647 
+            КолСвХардПоАнализу             КолСвСофтПоАнализу 
+                  0.0322275685                   0.0317821929 
+         КолСвВыданныеПоДомТел       КолСвВыдПогашенПоАнализу 
+                  0.0305593484                   0.0297413920 
+                 КолСвПоДомТел             КолТехнПросроч3Мес 
+                  0.0296815537                   0.0294348850 
+ ОбщСуммаДолгаПоДействКредитам                     КолМЗ_3мес 
+                  0.0292596715                   0.0291647661 
+           Контакты_МобТелефон                   СуммаТекущих 
+                  0.0281901296                   0.0280876544 
+               ПлатежейБП_6мес        КолСвВыдПогашенПоДомТел 
+                  0.0274817525                   0.0273193422 
+   МинНомер1гоПлатСПросрочкАкт              КолСвСофтПоДомТел 
+                  0.0254072736                   0.0252783502 
+             КолСвХардПоДомТел                    СтавкаВДень 
+                  0.0246569722                   0.0232483959 
+     КолСвВыдОтклоненаПоДомТел           КолСвСофтПоАдресуРег 
+                  0.0231834547                   0.0227415659 
+            ЗапрашиваемаяСумма                 Контакты_Скайп 
+                  0.0209913265                   0.0200503613 
+               КоличествоДетей               СуммарныйЛимитКК 
+                  0.0195670202                   0.0195581775 
+               НетПросрочкиАкт ОбщСуммаДолгаПоПросрочКредитам 
+                  0.0183175026                   0.0176954225 
+              КолСвПоАдресуРег                  КолАктивныхКК 
+                  0.0170917604                   0.0162297883 
+         КолПросрочки_90_погаш                     КолМЗ_6мес 
+                  0.0157240697                   0.0142216899 
+    КолСвВыдОтклоненаПоАнализу           ФактКИ_МаксСрокПоТек 
+                  0.0135432235                   0.0128446976 
+       МаксимальныйСрокКредита     КолСвВыдПогашенПоАдресуРег 
+                  0.0124644717                   0.0111994836 
+                 КолСвПоМобТел              КолСвХардПоМобТел 
+                  0.0094399525                   0.0094399525 
+             КолСвСофтПоМобТел          КолСвВыданныеПоМобТел 
+                  0.0094399525                   0.0094399525 
+     КолСвВыдОтклоненаПоМобТел        КолСвВыдПогашенПоМобТел 
+                  0.0094399525                   0.0094399525 
+                    КолСвПоДру                 КолСвХардПоДру 
+                  0.0094399525                   0.0094399525 
+                КолСвСофтПоДру             КолСвВыданныеПоДру 
+                  0.0094399525                   0.0094399525 
+        КолСвВыдОтклоненаПоДру           КолСвВыдПогашенПоДру 
+                  0.0094399525                   0.0094399525 
+                    ЕстьКронос          КолПросрочки_60_погаш 
+                  0.0094399525                   0.0083149523 
+  КолОбращенийЗаКредитами_6мес                  КолТекПросрМЗ 
+                  0.0076727878                   0.0072771641 
+        МинимальныйСрокКредита           КоличествоПривязКарт 
+                  0.0064434479                   0.0047577738 
+                 КолАктивныхМЗ           КолСвХардПоАдресуРег 
+                  0.0047041440                   0.0033365882 
+      КолСвВыданныеПоАдресуРег                       НеЗакрыт 
+                  0.0024349383                   0.0020572463 
+         ФактКИ_МаксСуммаПоТек        КолПросрочки_1_30_погаш 
+                  0.0007044426                   0.0006981093 
+              ЕжемесячныйДоход 
+                  0.0006956529 
+> tmp <- tmp %>% sort(T)
+> plot(tmp)
+> text(tmp,names(tmp),cex=0.6, pos=4, col="red",srt=90)
+> head(tmp.25)
+Ошибка в head(tmp.25) :объект 'tmp.25' не найден
+> head(tmp,25)
+          СрокЗаймаФактический                 СуммаПогашения 
+                    0.74143428                     0.55353465 
+                 ВыданнаяСумма         вбАвтоматичекоеРешение 
+                    0.42574313                     0.20269001 
+                МаксСуммаПоТек                        ЕстьБРС 
+                    0.19744884                     0.17343727 
+                       ЕстьОКБ                Продан_90_36мес 
+                    0.16787867                     0.11558959 
+             КолСвСофтПоРабТел              КолСвХардПоРабТел 
+                    0.09022779                     0.08979252 
+                  ЕстьЭквифакс   КолОбращенийЗаКредитами_1мес 
+                    0.08915353                     0.08723262 
+            КолПросрочки_1_акт           Контакты_ДомТелефон1 
+                    0.08096295                     0.07818536 
+           КолПросрочки_30_акт    СрокПослеПоследнЗакрКредита 
+                    0.07227102                     0.07202565 
+           КолПросрочки_60_акт        КолСвВыдПогашенПоРабТел 
+                    0.06820555                     0.06667488 
+          МаксТекПросрочкаДней   ВремяЖизниМобильногоТелефона 
+                    0.06557815                     0.06552237 
+           КолТекущихПросрочек          КолСвВыдОтклоненаПоip 
+                    0.06474246                     0.06257278 
+           КолПросрочки_90_акт              ОбщееКолПросрочек 
+                    0.06186669                     0.05952747 
+КолПросрочексвыше30дней_за6мес 
+                    0.05939896 
+> a.cor <- sapply(a,is.numeric) %>% a[,a.num] %>% select(-sc_pf,-sc_ep,-sc_cv150,-pf,-ep,-cv150,-pd)
+Ошибка в .[a, , a.num] :неправильное количество измерений
+> a.cor <- sapply(a,is.numeric) %>% a[,a.cor] %>% select(-sc_pf,-sc_ep,-sc_cv150,-pf,-ep,-cv150,-pd)
+Ошибка в .[a, , a.cor] :неправильное количество измерений
+> a.num <- sapply(a,is.numeric)
+> a.cor <- a[,a.num]%>% select(-sc_pf,-sc_ep,-sc_cv150,-pf,-ep,-cv150,-pd)
+> a <- cred %>% filter(КаналВыдачи == "Карта", ЗаймПоСчету == 1)
+> a <- merge(a,dd,by.x="НомерЗаявки", by.y="id",all.x=T)
+> 
+> #a.num <- sapply(a,is.numeric)
+> #a.cor <- a[,a.num]
+> #a.cor.df <- a.cor %>% select(-sc_pf,-sc_ep,-sc_cv150,-pf,-ep,-cv150,-pd)
+> 
+> a.num <- sapply(a,is.numeric)
+> a.cor <- a[,a.num]%>% select(-sc_pf,-sc_ep,-sc_cv150,-pf,-ep,-cv150,-pd)
+> 
+> a.cor.v <- cor(a.cor$defaultDays, a.cor[,3:160])
+Предупреждение:
+В cor(a.cor$defaultDays, a.cor[, 3:160]) : стандартное отклонение нулевое
+> 
+> tmp <- !sapply(a.cor.v,is.na)
+> a.cor.v.val <- a.cor.v[,tmp]
+> 
+> tmp <- a.cor.v.val %>% abs %>% sort(T)
+> plot(tmp)
+> text(tmp,names(tmp),cex=0.6, pos=4, col="red",srt=90)
+> a <- cred %>% filter(КаналВыдачи == "Карта", ЗаймПоСчету == 1)
+> a <- merge(a,dd,by.x="НомерЗаявки", by.y="id",all.x=T)
+> 
+> #a.num <- sapply(a,is.numeric)
+> #a.cor <- a[,a.num]
+> #a.cor.df <- a.cor %>% select(-sc_pf,-sc_ep,-sc_cv150,-pf,-ep,-cv150,-pd)
+> 
+> a.num <- sapply(a,is.numeric)
+> a.cor <- a[,a.num]%>% select(-sc_pf,-sc_ep,-sc_cv150,-pf,-ep,-cv150,-pd)
+> 
+> a.cor.v <- cor(a.cor$defaultDays, a.cor[,3:160])
+Предупреждение:
+В cor(a.cor$defaultDays, a.cor[, 3:160]) : стандартное отклонение нулевое
+> 
+> tmp <- !sapply(a.cor.v,is.na)
+> a.cor.v.val <- a.cor.v[,tmp]
+> 
+> tmp <- a.cor.v.val %>% abs %>% sort(T)
+> plot(tmp)
+> text(tmp,names(tmp),cex=0.6, pos=4, col="red",srt=90)
+> library(seasonal)
+Ошибка в library(seasonal) :нет пакета под названием ‘seasonal’
+> library(tidyr)
+> library(dplyr)
+> library(showtext)
+Ошибка в library(showtext) :нет пакета под названием ‘showtext’
+> library(ggplot2)
+> library(scales)
+> install.packages("showtext")
+устанавливаю также зависимости ‘sysfonts’, ‘showtextdb’
+
+пробую URL 'https://cran.gis-lab.info/bin/macosx/mavericks/contrib/3.3/sysfonts_0.5.tgz'
+Content type 'unknown' length 2087662 bytes (2.0 MB)
+==================================================
+downloaded 2.0 MB
+
+пробую URL 'https://cran.gis-lab.info/bin/macosx/mavericks/contrib/3.3/showtextdb_1.0.tgz'
+Content type 'unknown' length 1990023 bytes (1.9 MB)
+==================================================
+downloaded 1.9 MB
+
+пробую URL 'https://cran.gis-lab.info/bin/macosx/mavericks/contrib/3.3/showtext_0.4-4.tgz'
+Content type 'unknown' length 172916 bytes (168 KB)
+==================================================
+downloaded 168 KB
+
+
+Скачанные бинарные пакеты находятся в
+	/var/folders/n2/vbwzq2pj291bs7q4fmy3q2wh0000gn/T//RtmpTaiJwb/downloaded_packages
+> install.packages("seasonal")
+устанавливаю также зависимость ‘x13binary’
+
+пробую URL 'https://cran.gis-lab.info/bin/macosx/mavericks/contrib/3.3/x13binary_0.1.2.tgz'
+Content type 'unknown' length 1999517 bytes (1.9 MB)
+==================================================
+downloaded 1.9 MB
+
+пробую URL 'https://cran.gis-lab.info/bin/macosx/mavericks/contrib/3.3/seasonal_1.3.0.tgz'
+Content type 'unknown' length 436113 bytes (425 KB)
+==================================================
+downloaded 425 KB
+
+
+Скачанные бинарные пакеты находятся в
+	/var/folders/n2/vbwzq2pj291bs7q4fmy3q2wh0000gn/T//RtmpTaiJwb/downloaded_packages
+> # set up fonts etc
+> font.add.google("Poppins", "myfont")
+Ошибка: не могу найти функцию "font.add.google"
+> showtext.auto()
+Ошибка: не могу найти функцию "showtext.auto"
+> theme_set(theme_light(base_family = "myfont"))
+> library(seasonal)
+> library(showtext)
+Загрузка требуемого пакета: sysfonts
+> # set up fonts etc
+> font.add.google("Poppins", "myfont")
+Ошибка в loadNamespace(name) :there is no package called ‘RCurl’
+> showtext.auto()
+> theme_set(theme_light(base_family = "myfont"))
+> install.packages("seasonal")
+пробую URL 'https://cran.gis-lab.info/bin/macosx/mavericks/contrib/3.3/seasonal_1.3.0.tgz'
+Content type 'unknown' length 436113 bytes (425 KB)
+==================================================
+downloaded 425 KB
+
+
+Скачанные бинарные пакеты находятся в
+	/var/folders/n2/vbwzq2pj291bs7q4fmy3q2wh0000gn/T//RtmpTaiJwb/downloaded_packages
+install.packages("seasonal")
+> install.packages("RCurl")
+устанавливаю также зависимость ‘bitops’
+
+пробую URL 'https://cran.gis-lab.info/bin/macosx/mavericks/contrib/3.3/bitops_1.0-6.tgz'
+Content type 'unknown' length 23432 bytes (22 KB)
+==================================================
+downloaded 22 KB
+
+пробую URL 'https://cran.gis-lab.info/bin/macosx/mavericks/contrib/3.3/RCurl_1.95-4.8.tgz'
+Content type 'unknown' length 876987 bytes (856 KB)
+==================================================
+downloaded 856 KB
+
+
+Скачанные бинарные пакеты находятся в
+	/var/folders/n2/vbwzq2pj291bs7q4fmy3q2wh0000gn/T//RtmpTaiJwb/downloaded_packages
+> # set up fonts etc
+> font.add.google("Poppins", "myfont")
+> showtext.auto()
+> theme_set(theme_light(base_family = "myfont"))
+> download.file("https://github.com/ellisp/ellisp.github.io/blob/master/data/Electronic card transactions by industry group Monthly.rda?raw=true",
++               mode = "wb", # ie binary
++               destfile = "tmp.rda")
+
+downloaded 0 bytes
+
+Ошибка в download.file("https://github.com/ellisp/ellisp.github.io/blob/master/data/Electronic card transactions by industry group Monthly.rda?raw=true",  :
+  cannot download all files
+Вдобавок: Предупреждение:
+В download.file("https://github.com/ellisp/ellisp.github.io/blob/master/data/Electronic card transactions by industry group Monthly.rda?raw=true",  :
+  URL 'https://github.com/ellisp/ellisp.github.io/blob/master/data/Electronic card transactions by industry group Monthly.rda?raw=true': status was '400 Bad Request'
+> load("tmp.rda")
+Ошибка в readChar(con, 5L, useBytes = TRUE) :не могу открыть соединение
+Вдобавок: Предупреждение:
+В readChar(con, 5L, useBytes = TRUE) :
+  не могу открыть сжатый файл 'tmp.rda', возможная причина -- 'No such file or directory'
+> head(ect)
+Ошибка в head(ect) :объект 'ect' не найден
+> download.file("https://github.com/ellisp/ellisp.github.io/blob/master/data/Electronic card transactions by industry group Monthly.rda?raw=true",
++               mode = "wb", # ie binary
++               destfile = "tmp.rda")
+
+downloaded 0 bytes
+
+Ошибка в download.file("https://github.com/ellisp/ellisp.github.io/blob/master/data/Electronic card transactions by industry group Monthly.rda?raw=true",  :
+  cannot download all files
+Вдобавок: Предупреждение:
+В download.file("https://github.com/ellisp/ellisp.github.io/blob/master/data/Electronic card transactions by industry group Monthly.rda?raw=true",  :
+  URL 'https://github.com/ellisp/ellisp.github.io/blob/master/data/Electronic card transactions by industry group Monthly.rda?raw=true': status was '400 Bad Request'
+> 
+> load("tmp.rda")
+Ошибка в readChar(con, 5L, useBytes = TRUE) :не могу открыть соединение
+Вдобавок: Предупреждение:
+В readChar(con, 5L, useBytes = TRUE) :
+  не могу открыть сжатый файл 'tmp.rda', возможная причина -- 'No such file or directory'
+> load("tmp.rda")
+> head(ect)
+  TimePeriod                     group Value Unit Magnitude
+1 2002-10-31               Consumables 773.7    $  Millions
+2 2002-10-31                  Durables 684.4    $  Millions
+3 2002-10-31               Hospitality 297.3    $  Millions
+4 2002-10-31                  Services  74.8    $  Millions
+5 2002-10-31                   Apparel 172.8    $  Millions
+6 2002-10-31 Motor vehicles excl. fuel  52.3    $  Millions
+> apparel <- ect %>%
++    filter(group == "Apparel")
+> 
+> apparel_ts <- ts(apparel$Value, start = c(2002, 10), frequency = 12)
+> 
+> par(mfrow = c(2, 2), family = "myfont")
+> plot(apparel_ts, xlab = "")
+> acf(apparel_ts, main = "")
+> pacf(apparel_ts, main = "")
+> spectrum(apparel_ts, main = "")
+> plot(decompose(apparel_ts, type = "multiplicative"))
+> mod <- seas(apparel_ts)
+> 
+> plot(mod)
+> plot(resid(mod), main = "Residuals")
+> qqnorm(resid(mod), main = "Residuals compared to Normal")
+> pacf(resid(mod), "Partial ACF of residuals")
+> 
+> apparel_sa <- data_frame(
++    Time = time(apparel_ts),
++    Original = apparel_ts,
++    SA = final(mod))
+> 
+> ggplot(apparel_sa, aes(x = Original, y = SA, colour = Time)) +
++    geom_abline(intercept = 0, slope = 1, colour = "grey50") +
++    geom_path() +
++    geom_point() +
++    coord_equal() +
++    scale_x_continuous("Original ($m)", label = dollar) +
++    scale_y_continuous("Seasonally adjusted ($m)", label = dollar) +
++    ggtitle("Comparison of original and seasonally adjustedn electronic card transactions on apparel in New Zealand")
+Don't know how to automatically pick scale for object of type ts. Defaulting to continuous.
+> head(apparel_sa)
+# A tibble: 6 × 3
+      Time Original       SA
+     <dbl>    <dbl>    <dbl>
+1 2002.750    172.8 179.2698
+2 2002.833    182.3 174.1179
+3 2002.917    257.6 182.1227
+4 2003.000    169.7 181.3327
+5 2003.083    154.3 183.2708
+6 2003.167    183.9 181.4838
+> head(tmp)
+  СрокЗаймаФактический         СуммаПогашения          ВыданнаяСумма 
+             0.7414343              0.5535346              0.4257431 
+вбАвтоматичекоеРешение         МаксСуммаПоТек                ЕстьБРС 
+             0.2026900              0.1974488              0.1734373 
+> tmp2 <- data.frame(name = names(tmp), corr = tmp) %>% head
+> head(tmp2)
+                                         name      corr
+СрокЗаймаФактический     СрокЗаймаФактический 0.7414343
+СуммаПогашения                 СуммаПогашения 0.5535346
+ВыданнаяСумма                   ВыданнаяСумма 0.4257431
+вбАвтоматичекоеРешение вбАвтоматичекоеРешение 0.2026900
+МаксСуммаПоТек                 МаксСуммаПоТек 0.1974488
+ЕстьБРС                               ЕстьБРС 0.1734373
+> ect %>%
++    ggplot(aes(x = TimePeriod, y = Value, colour = group)) +
++    geom_line(alpha = 0.3) +
++    stat_seas(frequency = 12, start = c(1978, 4)) +
++    facet_wrap( ~ group, scales = "free_y", ncol = 2) +
++    labs(x = "", y = "SEATS-seasonally adjusted monthly transaction value ($m)",
++         title = "Electronic card transactions in New Zealand") +
++    theme(legend.position = "none")
+Ошибка: не могу найти функцию "stat_seas"
+> plot(density(tmp2$corr))
+> acf(tmp2$corr)
+> pacf(tmp2$corr)
+> spectrum(tmp2$corr)
+> plot(decompose(tmp2$corr, type = "multiplicative"))
+Ошибка в decompose(tmp2$corr, type = "multiplicative") :
+  time series has no or less than 2 periods
+> head_
+Ошибка: объект 'head_' не найден
+> head(apparel_ts)
+[1] 172.8 182.3 257.6 169.7 154.3 183.9
+> str(apparel_ts)
+ Time-Series [1:155] from 2003 to 2016: 173 182 258 170 154 ...
+> TAGDP_public <- read.csv("http://www.mbie.govt.nz/info-services/sectors-industries/regions-cities/research/modelled-territorial-authority-gross-domestic-product/resolveuid/98debb063cb14ecbab0f018b7681e7f4",
++                    stringsAsFactors = FALSE)
+>     mtagdp_totals <- read.csv("http://www.mbie.govt.nz/info-services/sectors-industries/regions-cities/research/modelled-territorial-authority-gross-domestic-product/resolveuid/b811fea8196c4d269c1d5ca973933c7c",
++                               stringsAsFactors = FALSE)
+> glimpse(TAGDP_public)
+Observations: 54,608
+Variables: 12
+$ Year                         <int> 2000, 2000, 2000, 2000, 2000, 2000, 2000, 200...
+$ NGDP_industry                <chr> "Accommodation and Food Services", "Accommoda...
+$ RGDP_industry                <chr> "Accommodation and Food Services", "Accommoda...
+$ TA                           <chr> "Ashburton District", "Auckland", "Buller Dis...
+$ Region                       <chr> "Canterbury", "Auckland", "West Coast", "Well...
+$ Employees                    <dbl> 560, 30520, 335, 73, 129, 335, 11600, 280, 33...
+$ Earnings_original            <dbl> 6964097.3, 454701109.9, 3454498.7, 813236.4, ...
+$ Earnings_commuting_corrected <dbl> 6902253.8, 457779991.9, 3527532.3, 748302.6, ...
+$ GDP                          <dbl> 10.677656, 665.000000, 6.471778, 1.140169, 1....
+$ GDP_real                     <dbl> 17.200612, 1071.247017, 10.425372, 1.836696, ...
+$ GDP_perCapita                <dbl> 412.2647, 553.4748, 643.9580, 166.6914, 125.9...
+$ GDP_real_perCapita           <dbl> 664.1163, 891.5914, 1037.3505, 268.5228, 202....
+> unique(TAGDP_public$Year)
+ [1] 2000 2001 2002 2003 2004 2005 2006 2007 2008 2009 2010 2011 2012 2013
+> tagdp <- ts(TAGDP_public$Earnings_original,start=c(2000,01), frequency = 12)
+> plot(decompose(tagdp, type = "multiplicative"))
+> par(mfrow = c(2, 2), family = "myfont")
+> > plot(tagdp, xlab = "")
+Ошибка: неожиданный '>' in ">"
+> > acf(tagdp, main = "")
+Ошибка: неожиданный '>' in ">"
+> > pacf(tagdp, main = "")
+Ошибка: неожиданный '>' in ">"
+> > spectrum(tagdp, main = "")
+Ошибка: неожиданный '>' in ">"
+> 
+> par(mfrow = c(2, 2), family = "myfont")
+> plot(tagdp, xlab = "")
+> acf(tagdp, main = "")
+> pacf(tagdp, main = "")
+> spectrum(tagdp, main = "")
+> mod <- seas(tagdp)
+Ошибка: X-13 run failed
+
+Errors:
+- Problem reading
+  /var/folders/n2/vbwzq2pj291bs7q4fmy3q2wh0000gn/T//RtmpTaiJwb/x13f6103e6835/data.dta.
+  Too many observations in file.
+- Problem reading
+  /var/folders/n2/vbwzq2pj291bs7q4fmy3q2wh0000gn/T//RtmpTaiJwb/x13f6103e6835/data.dta.
+  Check your input file and format.
+- Time series could not be read due to previously found errors
+- Specify series before user-defined adjustments
+- Need to specify a series to identify outliers
+> dim(tagdp)
+NULL
+> length(tagdp)
+[1] 54608
+> glimpse(mtagdp_totals)
+Observations: 1,200
+Variables: 8
+$ Year               <int> 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2...
+$ TA                 <chr> "Ashburton District", "Auckland", "Buller District", "C...
+$ Region             <chr> "Canterbury", "Auckland", "West Coast", "Wellington", "...
+$ GDP                <dbl> 714.82620, 40539.00000, 202.46727, 120.90498, 311.55014...
+$ GDP_real           <dbl> 1053.88922, 55323.82090, 296.63983, 164.98498, 425.0214...
+$ GDP_perCapita      <dbl> 27599.467, 33740.325, 20145.997, 17676.166, 23692.026, ...
+$ GDP_real_perCapita <dbl> 40690.70, 46045.63, 29516.40, 24120.61, 32321.02, 37505...
+$ notes              <chr> "estimate", "estimate", "estimate", "estimate", "estima...
+> plot(tmp2)
+> par(mfrow=c(1,1))
+> plot(tmp2)
+> head(tmp2)
+                                         name      corr
+СрокЗаймаФактический     СрокЗаймаФактический 0.7414343
+СуммаПогашения                 СуммаПогашения 0.5535346
+ВыданнаяСумма                   ВыданнаяСумма 0.4257431
+вбАвтоматичекоеРешение вбАвтоматичекоеРешение 0.2026900
+МаксСуммаПоТек                 МаксСуммаПоТек 0.1974488
+ЕстьБРС                               ЕстьБРС 0.1734373
+> plot(tmp2$corr)
+> plot(tmp2$corr)+geom_line()
+Ошибка в plot(tmp2$corr) + geom_line() :
+  нечисловой аргумент для бинарного оператора
+> head(tmp2$corr,50)
+[1] 0.7414343 0.5535346 0.4257431 0.2026900 0.1974488 0.1734373
+> X <- read.csv("http://www.stats.govt.nz/~/media/Statistics/Census/2013%20Census/profile-and-summary-reports/commuter-view-interactive/2013-usual-residence-by-workplace-address-territorial-authority.csv",
++               na.strings       = "..C",
++               sep              = ",",
++               stringsAsFactors = FALSE,
++               check.names      = TRUE,
++               header           = TRUE)
+> TravelAll <- X[1:67, ] %>% 
++     rename(from = Usual.residence) %>%
++     gather(to, value, -from) %>%
++     mutate(from = gsub(" District", "", from),
++            from = gsub(" City", "", from),
++            from = gsub(" Territory", "", from),
++            to = gsub(".", " ", to, fixed = TRUE),
++            to = gsub(" Territory", "", to),
++            to = gsub(" District", "", to),
++            to = gsub(" City", "", to),
++            to = gsub("Hawke s", "Hawke's", to, fixed = TRUE),
++            to = gsub("Matamata Piako", "Matamata-Piako", to),
++            to = gsub("Queenstown Lakes", "Queenstown-Lakes", to),
++            to = gsub("Thames Coromandel", "Thames-Coromandel", to)) %>%
++     filter(from != to &
++                to != "Total workplace address" &
++                to != "No Fixed Workplace Address" &
++                to != "Area Outside Territorial Authority") %>%
++     filter(!grepl("Not Further Defined", to)) %>%
++     mutate(value = as.numeric(value),
++            value = ifelse(is.na(value), 0, value)) 
+> 
+> # subset dropping the small values:
+> Travel <- TravelAll %>% 
++     filter(value > 100)
+> draw_plot <- function(seed = 125){
++     set.seed(seed) # there's some randomness in the graphing layout
++     g <- Travel  %>%
++         graph.data.frame(directed = TRUE)       
++     par(family = TheFont, mai = c(.2, .2, .2, .2))  
++     plot(g, edge.arrow.size = .4, layout = layout.davidson.harel,
++          edge.width = sqrt(Travel$value) / 20,
++          vertex.size = 0, edge.curved = TRUE,
++          vertex.label.family = TheFont,
++          vertex.label.cex = .8,
++          main = ""
++     )          
++ }
+> CairoPDF("Figures/commuting.pdf", 8.3, 8.3)
+Ошибка: не могу найти функцию "CairoPDF"
+> draw_plot()
+Ошибка в function_list[[k]](value) :
+  не могу найти функцию "graph.data.frame"
+> dev.off()
+null device 
+          1 
+> draw_plot()
+Ошибка в function_list[[k]](value) :
+  не могу найти функцию "graph.data.frame"
+> install.packages("igraph")
+пробую URL 'https://cran.gis-lab.info/bin/macosx/mavericks/contrib/3.3/igraph_1.0.1.tgz'
+Content type 'unknown' length 6598610 bytes (6.3 MB)
+==================================================
+downloaded 6.3 MB
+
+
+Скачанные бинарные пакеты находятся в
+	/var/folders/n2/vbwzq2pj291bs7q4fmy3q2wh0000gn/T//RtmpTaiJwb/downloaded_packages
+> library(igraph)
+
+Присоединяю пакет: ‘igraph’
+
+Следующие объекты скрыты от ‘package:tidyr’:
+
+    %>%, crossing
+
+Следующий объект скрыт от ‘package:rvest’:
+
+    %>%
+
+Следующие объекты скрыты от ‘package:dplyr’:
+
+    %>%, as_data_frame, groups, union
+
+Следующие объекты скрыты от ‘package:stats’:
+
+    decompose, spectrum
+
+Следующий объект скрыт от ‘package:base’:
+
+    union
+
+> draw_plot()
+Ошибка в par(family = TheFont, mai = c(0.2, 0.2, 0.2, 0.2)) :
+  объект 'TheFont' не найден
+> font.add.google("Poppins", "TheFont")
+> draw_plot()
+Ошибка в par(family = TheFont, mai = c(0.2, 0.2, 0.2, 0.2)) :
+  объект 'TheFont' не найден
+> ggplot(tmp,  aes(x = factor(""), fill = workshop) ) +
++   geom_bar()
+Ошибка: ggplot2 doesn't know how to deal with data of class numeric
+> ggplot(tmp2,  aes(x = factor(""), fill = workshop) ) +
++   geom_bar()
+Ошибка в eval(expr, envir, enclos) :объект 'workshop' не найден
+> row.names(tmp2)
+[1] "СрокЗаймаФактический"   "СуммаПогашения"         "ВыданнаяСумма"         
+[4] "вбАвтоматичекоеРешение" "МаксСуммаПоТек"         "ЕстьБРС"               
+> row.names(tmp2) <- NULL
+> tmp2
+                    name      corr
+1   СрокЗаймаФактический 0.7414343
+2         СуммаПогашения 0.5535346
+3          ВыданнаяСумма 0.4257431
+4 вбАвтоматичекоеРешение 0.2026900
+5         МаксСуммаПоТек 0.1974488
+6                ЕстьБРС 0.1734373
+> ggplot(tmp2,  aes(x = factor(""), fill = workshop) ) +
++   geom_bar()
+Ошибка в eval(expr, envir, enclos) :объект 'workshop' не найден
+> ggplot(tmp2,  aes(x = factor(""), fill = tmp2$name) ) +
++   geom_bar()
+> ggplot(tmp2,  aes(x = factor(""), fill = tmp2$name) ) +
++   geom_bar()
+
+> 
+> 
+> ggplot(tmp2)
+> qplot(tmp2)
+Don't know how to automatically pick scale for object of type data.frame. Defaulting to continuous.
+`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+Предупреждения:
+1: В is.na(x) : is.na() применен к не-списку/вектору типа 'NULL'
+2: В is.na(x) : is.na() применен к не-списку/вектору типа 'NULL'
+3: В is.na(x) : is.na() применен к не-списку/вектору типа 'NULL'
+4: В is.na(x) : is.na() применен к не-списку/вектору типа 'NULL'
+5: В is.na(x) : is.na() применен к не-списку/вектору типа 'NULL'
+6: В is.na(x) : is.na() применен к не-списку/вектору типа 'NULL'
+7: Removed 6 rows containing missing values (position_stack). 
+> qplot(tmp2$corr)
+`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+starting httpd help server ... done
+> qplot(tmp2$corr, tmp2$name)
+> par(family = ‘sans’)
+–Ю—И–Є–±–Ї–∞: –љ–µ–Њ–ґ–Є–і–∞–љ–љ—Л–є –≤–≤–Њ–і in "par(family = в"
+> qplot(tmp2$corr, tmp2$name)
+> par(family = "sans")
+> qplot(tmp2$corr, tmp2$name)
+> plot(tmp2$corr, tmp2$name)
+> legend(tmp2$name)
+Ошибка в as.graphicsAnnot(legend) :
+  аргумент "legend" пропущен, умолчаний нет
+> legend(tmp2$corr,tmp2$name)
+Ошибка в as.graphicsAnnot(legend) :
+  аргумент "legend" пропущен, умолчаний нет
+> legend(tmp2$corr,,tmp2$name)
+Ошибка в legend(tmp2$corr, , tmp2$name) :неправильные длины координат
+> plot(tmp)
+> text(tmp,names(tmp),cex=0.6, pos=4, col="red",srt=90)
+> install.packages("stringi")
+пробую URL 'https://cran.gis-lab.info/bin/macosx/mavericks/contrib/3.3/stringi_1.1.1.tgz'
+Content type 'unknown' length 12657123 bytes (12.1 MB)
+==================================================
+downloaded 12.1 MB
+
+
+Скачанные бинарные пакеты находятся в
+	/var/folders/n2/vbwzq2pj291bs7q4fmy3q2wh0000gn/T//RtmpTaiJwb/downloaded_packages
+> library(stringi)
+> n1 <- stri_trans_general(names(tmp),"latin")
+> n1
+  [1] "SrokZajmaFaktičeskij"           "SummaPogašeniâ"                
+  [3] "VydannaâSumma"                  "vbAvtomatičekoeRešenie"        
+  [5] "MaksSummaPoTek"                 "EstʹBRS"                       
+  [7] "EstʹOKB"                        "Prodan_90_36mes"               
+  [9] "KolSvSoftPoRabTel"              "KolSvHardPoRabTel"             
+ [11] "EstʹÉkvifaks"                   "KolObraŝenijZaKreditami_1mes"  
+ [13] "KolProsročki_1_akt"             "Kontakty_DomTelefon1"          
+ [15] "KolProsročki_30_akt"            "SrokPoslePoslednZakrKredita"   
+ [17] "KolProsročki_60_akt"            "KolSvVydPogašenPoRabTel"       
+ [19] "MaksTekProsročkaDnej"           "VremâŽizniMobilʹnogoTelefona"  
+ [21] "KolTekuŝihProsroček"            "KolSvVydOtklonenaPoip"         
+ [23] "KolProsročki_90_akt"            "ObŝeeKolProsroček"             
+ [25] "KolProsročeksvyše30dnej_za6mes" "Vozrast"                       
+ [27] "KolSvSoftPoip"                  "FaktAdresSovpadaetSRegAdres2"  
+ [29] "KolSvHardPoip"                  "MaksProsročka_za6mes"          
+ [31] "KreditnaâNagruzka"              "KolSvVydOtklonenaPoRabTel"     
+ [33] "KolSvVydannyePoRabTel"          "SrokZajmaPoDogovoru"           
+ [35] "KolSvVydPogašenPoAdresuFakt"    "KolSvVydannyePoip"             
+ [37] "KolSvHardPoAdresuFakt"          "KolSvâzok"                     
+ [39] "KolSvSoftPoAdresuFakt"          "KolSvPoAdresuFakt"             
+ [41] "KolSvVydOtklonenaPoAdresuFakt"  "KolSvVydannyePoAdresuFakt"     
+ [43] "OtvetpoKIpogašennyeESTʹ̱"        "KolProsročKK"                  
+ [45] "NetProsročkiPogaš"              "KolSvVydPogašenPoip"           
+ [47] "KolSvVydOtklonenaPoAdresuReg"   "KolSvPoRabTel"                 
+ [49] "KolSvPoip"                      "Zakryt"                        
+ [51] "KolSvPoAnalizu"                 "KolSvVydannyePoAnalizu"        
+ [53] "KolSvHardPoAnalizu"             "KolSvSoftPoAnalizu"            
+ [55] "KolSvVydannyePoDomTel"          "KolSvVydPogašenPoAnalizu"      
+ [57] "KolSvPoDomTel"                  "KolTehnProsroč3Mes"            
+ [59] "ObŝSummaDolgaPoDejstvKreditam"  "KolMZ_3mes"                    
+ [61] "Kontakty_MobTelefon"            "SummaTekuŝih"                  
+ [63] "PlatežejBP_6mes"                "KolSvVydPogašenPoDomTel"       
+ [65] "MinNomer1goPlatSProsročkAkt"    "KolSvSoftPoDomTel"             
+ [67] "KolSvHardPoDomTel"              "StavkaVDenʹ"                   
+ [69] "KolSvVydOtklonenaPoDomTel"      "KolSvSoftPoAdresuReg"          
+ [71] "ZaprašivaemaâSumma"             "Kontakty_Skajp"                
+ [73] "KoličestvoDetej"                "SummarnyjLimitKK"              
+ [75] "NetProsročkiAkt"                "ObŝSummaDolgaPoProsročKreditam"
+ [77] "KolSvPoAdresuReg"               "KolAktivnyhKK"                 
+ [79] "KolProsročki_90_pogaš"          "KolMZ_6mes"                    
+ [81] "KolSvVydOtklonenaPoAnalizu"     "FaktKI_MaksSrokPoTek"          
+ [83] "MaksimalʹnyjSrokKredita"        "KolSvVydPogašenPoAdresuReg"    
+ [85] "KolSvPoMobTel"                  "KolSvHardPoMobTel"             
+ [87] "KolSvSoftPoMobTel"              "KolSvVydannyePoMobTel"         
+ [89] "KolSvVydOtklonenaPoMobTel"      "KolSvVydPogašenPoMobTel"       
+ [91] "KolSvPoDru"                     "KolSvHardPoDru"                
+ [93] "KolSvSoftPoDru"                 "KolSvVydannyePoDru"            
+ [95] "KolSvVydOtklonenaPoDru"         "KolSvVydPogašenPoDru"          
+ [97] "EstʹKronos"                     "KolProsročki_60_pogaš"         
+ [99] "KolObraŝenijZaKreditami_6mes"   "KolTekProsrMZ"                 
+[101] "MinimalʹnyjSrokKredita"         "KoličestvoPrivâzKart"          
+[103] "KolAktivnyhMZ"                  "KolSvHardPoAdresuReg"          
+[105] "KolSvVydannyePoAdresuReg"       "NeZakryt"                      
+[107] "FaktKI_MaksSummaPoTek"          "KolProsročki_1_30_pogaš"       
+[109] "EžemesâčnyjDohod"              
+> tmp$name <- n1
+Предупреждение:
+В tmp$name <- n1 : Преобразование левой стороны выражения в список
+> tmp2$name <- n1
+Ошибка в `$<-.data.frame`(`*tmp*`, "name", value = c("SrokZajmaFaktičeskij",  :
+  replacement has 109 rows, data has 6
+> n1 <- stri_trans_general(tmp2$name,"latin")
+> tmp2$name <- n1
+> qplot(tmp2$corr, tmp2$name)
+> qplot(tmp2$name,tmp2$corr)
+> library(RSQLite)
+> library(dplyr)
+> library(tidyr)
+> library(arules)
+Ошибка в library(arules) :нет пакета под названием ‘arules’
+> library(arulesSequences)
+Ошибка в library(arulesSequences) :
+  нет пакета под названием ‘arulesSequences’
+> library(readr)
+Ошибка в library(readr) :нет пакета под названием ‘readr’
+> library(stringr)
+
+Присоединяю пакет: ‘stringr’
+
+Следующий объект скрыт от ‘package:igraph’:
+
+    %>%
+
+> library(visNetwork)
+Ошибка в library(visNetwork) :нет пакета под названием ‘visNetwork’
+> library(igraph)
+> library(lubridate)
+Ошибка в library(lubridate) :нет пакета под названием ‘lubridate’
+> library(DT)
+Ошибка в library(DT) :нет пакета под названием ‘DT’
+> install.packages("")
+Предупреждение:
+пакет '‘’' недоступен (for R version 3.3.1) 
+> install.packages("visNetwork")
+пробую URL 'https://cran.gis-lab.info/bin/macosx/mavericks/contrib/3.3/visNetwork_1.0.1.tgz'
+Content type 'unknown' length 2509819 bytes (2.4 MB)
+==================================================
+downloaded 2.4 MB
+
+
+Скачанные бинарные пакеты находятся в
+	/var/folders/n2/vbwzq2pj291bs7q4fmy3q2wh0000gn/T//RtmpTaiJwb/downloaded_packages
+> install.packages("readr")
+устанавливаю также зависимость ‘hms’
+
+пробую URL 'https://cran.gis-lab.info/bin/macosx/mavericks/contrib/3.3/hms_0.2.tgz'
+Content type 'unknown' length 18542 bytes (18 KB)
+==================================================
+downloaded 18 KB
+
+пробую URL 'https://cran.gis-lab.info/bin/macosx/mavericks/contrib/3.3/readr_1.0.0.tgz'
+Content type 'unknown' length 2006808 bytes (1.9 MB)
+==================================================
+downloaded 1.9 MB
+
+
+Скачанные бинарные пакеты находятся в
+	/var/folders/n2/vbwzq2pj291bs7q4fmy3q2wh0000gn/T//RtmpTaiJwb/downloaded_packages
+> install.packages("DT")
+пробую URL 'https://cran.gis-lab.info/bin/macosx/mavericks/contrib/3.3/DT_0.2.tgz'
+Content type 'unknown' length 864387 bytes (844 KB)
+==================================================
+downloaded 844 KB
+
+
+Скачанные бинарные пакеты находятся в
+	/var/folders/n2/vbwzq2pj291bs7q4fmy3q2wh0000gn/T//RtmpTaiJwb/downloaded_packages
+> install.packages("lubridate")
+пробую URL 'https://cran.gis-lab.info/bin/macosx/mavericks/contrib/3.3/lubridate_1.5.6.tgz'
+Content type 'unknown' length 655136 bytes (639 KB)
+==================================================
+downloaded 639 KB
+
+
+Скачанные бинарные пакеты находятся в
+	/var/folders/n2/vbwzq2pj291bs7q4fmy3q2wh0000gn/T//RtmpTaiJwb/downloaded_packages
+> library(RSQLite)
+> library(dplyr)
+> library(tidyr)
+> library(arules)
+Ошибка в library(arules) :нет пакета под названием ‘arules’
+> library(arulesSequences)
+Ошибка в library(arulesSequences) :
+  нет пакета под названием ‘arulesSequences’
+> library(readr)
+
+Присоединяю пакет: ‘readr’
+
+Следующие объекты скрыты от ‘package:scales’:
+
+    col_factor, col_numeric
+
+Следующий объект скрыт от ‘package:rvest’:
+
+    guess_encoding
+
+> library(stringr)
+> library(visNetwork)
+
+Присоединяю пакет: ‘visNetwork’
+
+Следующий объект скрыт от ‘package:igraph’:
+
+    %>%
+
+> library(igraph)
+> library(lubridate)
+
+Присоединяю пакет: ‘lubridate’
+
+Следующий объект скрыт от ‘package:igraph’:
+
+    %--%
+
+Следующий объект скрыт от ‘package:base’:
+
+    date
+
+> library(DT)
+
+Присоединяю пакет: ‘DT’
+
+Следующий объект скрыт от ‘package:igraph’:
+
+    %>%
+
+> install.packages("arules")
+пробую URL 'https://cran.gis-lab.info/bin/macosx/mavericks/contrib/3.3/arules_1.4-2.tgz'
+Content type 'unknown' length 1874212 bytes (1.8 MB)
+==================================================
+downloaded 1.8 MB
+
+
+Скачанные бинарные пакеты находятся в
+	/var/folders/n2/vbwzq2pj291bs7q4fmy3q2wh0000gn/T//RtmpTaiJwb/downloaded_packages
+> install.packages("arulesSequences")
+пробую URL 'https://cran.gis-lab.info/bin/macosx/mavericks/contrib/3.3/arulesSequences_0.2-16.tgz'
+Content type 'unknown' length 1095946 bytes (1.0 MB)
+==================================================
+downloaded 1.0 MB
+
+
+Скачанные бинарные пакеты находятся в
+	/var/folders/n2/vbwzq2pj291bs7q4fmy3q2wh0000gn/T//RtmpTaiJwb/downloaded_packages
+> library(RSQLite)
+> library(dplyr)
+> library(tidyr)
+> library(arules)
+Загрузка требуемого пакета: Matrix
+
+Присоединяю пакет: ‘Matrix’
+
+Следующий объект скрыт от ‘package:tidyr’:
+
+    expand
+
+
+Присоединяю пакет: ‘arules’
+
+Следующий объект скрыт от ‘package:seasonal’:
+
+    inspect
+
+Следующий объект скрыт от ‘package:dplyr’:
+
+    recode
+
+Следующие объекты скрыты от ‘package:base’:
+
+    abbreviate, write
+
+> library(arulesSequences)
+
+Присоединяю пакет: ‘arulesSequences’
+
+Следующий объект скрыт от ‘package:igraph’:
+
+    similarity
+
+> library(readr)
+> library(stringr)
+> library(visNetwork)
+> library(igraph)
+> library(lubridate)
+> library(DT)
+> write.csv(a.cor,"/users/rvsl/a-cor.csv",row.names=F,quote=F)
+> write.csv(tmp,"/users/rvsl/a-cor.csv",row.names=F,quote=F)
+> write.csv(a.cor,"/users/rvsl/a-cor.csv",row.names=F,quote=F)
+> write.csv(a,"/users/rvsl/card-data.csv",row.names=F,quote=F)
+> setwd("/users/rvsl/RRR/")
+> 
