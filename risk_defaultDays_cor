@@ -1,0 +1,33 @@
+library(dplyr)
+library(sqldf)
+
+options(sqldf.RPostgreSQL.user ="postgres",
+sqldf.RPostgreSQL.password ="postgress",
+sqldf.RPostgreSQL.dbname ="risk",
+sqldf.RPostgreSQL.host ="192.168.100.21",
+sqldf.RPostgreSQL.port =5432)
+
+cred <- sqldf("select * from ДанныеЗаявок where датаЗаявки > '2016-01-01' and датаЗаявки < '2016-02-01' order by НомерЗаявки asc limit 1000", drv="PostgreSQL")
+
+card <- cred %>% filter(КаналВыдачи == "Карта") %>% select(НомерЗаявки,Возраст)
+names(card) <- c("id","age")
+dd <- read.csv("/users/rvsl/dd.csv",header=T,sep=";",stringsAsFactors=F)
+dd[is.na(dd)]<-0
+names(dd)
+
+a <- cred %>% filter(КаналВыдачи == "Карта", ЗаймПоСчету == 1)
+a <- merge(a,dd,by.x="НомерЗаявки", by.y="id",all.x=T)
+
+a.num <- sapply(a,is.numeric)
+a.cor <- a[,a.num]%>% select(-sc_pf,-sc_ep,-sc_cv150,-pf,-ep,-cv150,-pd)
+
+a.cor$qdd <- as.integer(cut(a.cor$defaultDays, quantile(unique(a.cor$defaultDays))))
+
+a.cor.v <- cor(a.cor$defaultDays, a.cor[,3:160])
+
+tmp <- !sapply(a.cor.v,is.na)
+a.cor.v.val <- a.cor.v[,tmp]
+
+tmp <- a.cor.v.val %>% abs %>% sort(T)
+plot(tmp)
+text(tmp,names(tmp),cex=0.6, pos=4, col="red",srt=90)
