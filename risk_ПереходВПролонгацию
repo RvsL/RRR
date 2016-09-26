@@ -5,7 +5,7 @@ select
 
 Concat (Extract (year from t1.ДатаВыдачи), '_', case when Extract (month from t1.ДатаВыдачи)::text not in ('10', '11', '12') then concat('0', Extract (month from t1.ДатаВыдачи)) else Extract (month from t1.ДатаВыдачи)::text end) AS YYYY_MM,
 t2.DOB as DOB, 
-sum(t2.pro)/sum(t2.tot)::real as porPercent
+sum(t2.pro)/sum(t2.tot)::real as proPercent
 from ДанныеЗаявок as t1
 
 left join (select
@@ -24,4 +24,4 @@ DOB, YYYY_MM
 order by DOB
 
 ", drv="PostgreSQL")
-ggplot(stats, aes(x= dob, y= porpercent, colour=yyyy_mm, group=yyyy_mm)) + geom_line()
+ggplot(stats, aes(x= dob, y= propercent, colour=yyyy_mm, group=yyyy_mm)) + geom_line()
