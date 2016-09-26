@@ -14,6 +14,7 @@ glimpse(stats)
 t <- stats %>% filter(ЗаймПоСчету < 40,ВыданнаяСумма < 20001) %>% mutate(cat = 3000*findInterval(ВыданнаяСумма, c(1,3001,6001,9001,12001,15001,18001,20001)))
 md <- melt(t,id=c("ЗаймПоСчету", "cat"))
 z <- cast(md, ЗаймПоСчету~cat, function(x) length(x))
+z
 
 z2 <- t %>% select(ЗаймПоСчету,cat)
 z3 <- count(z2,c("ЗаймПоСчету","cat"))
