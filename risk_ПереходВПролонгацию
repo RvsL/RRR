@@ -1,0 +1,27 @@
+#stats <- sqldf("select ЗаймПоСчету,ЗапрашиваемаяСумма,ВыданнаяСумма from ДанныеЗаявок where ВыданнаяСумма > 0", drv="PostgreSQL")
+stats <- sqldf("
+
+select 
+
+Concat (Extract (year from t1.ДатаВыдачи), '_', case when Extract (month from t1.ДатаВыдачи)::text not in ('10', '11', '12') then concat('0', Extract (month from t1.ДатаВыдачи)) else Extract (month from t1.ДатаВыдачи)::text end) AS YYYY_MM,
+t2.DOB as DOB, 
+sum(t2.pro)/sum(t2.tot)::real as porPercent
+from ДанныеЗаявок as t1
+
+left join (select
+id_заявки as id, 
+ДеньЖизниЗайма as DOB, 
+(case when СтатусПролонгации = true then 1 else 0 end) as pro, 1 as tot from \042lifeCycle\042 where ДеньЖизниЗайма < 151 
+) as t2 on t1.НомерЗаявки = t2.id
+
+where ВыданнаяСумма  > 0 and 
+ДатаВыдачи > '2016-01-01'
+and
+ДатаВыдачи < '2016-09-01'
+group by 
+DOB, YYYY_MM
+
+order by DOB
+
+", drv="PostgreSQL")
+ggplot(stats, aes(x= dob, y= porpercent, colour=yyyy_mm, group=yyyy_mm)) + geom_line()
