@@ -11,7 +11,7 @@ stats <- sqldf("select
  
  id_заявки as id, 
  ДеньЖизниЗайма as DOB, 
- sum(sum(ОплатаПроценты + ОплатаШтрафы + ОплатаДопСоглашения + ОплатаОсновнойДолг)) over (rows unbounded preceding) as payed
+ sum(sum(ОплатаПроценты + ОплатаШтрафы + ОплатаДопСоглашения + ОплатаОсновнойДолг)) over (PARTITION BY id_заявки ORDER BY ДеньЖизниЗайма) as payed
  
  from \042lifeCycle\042 
  where ДеньЖизниЗайма < 151
@@ -31,5 +31,5 @@ stats <- sqldf("select
  order by DOB
 ", drv="PostgreSQL")
 head(stats)
-stats$payed <- stats$payed / 1000000000000
+stats$payed <- stats$payed / 1000000
 ggplot(stats, aes(x= dob, y=payed, colour=yyyy_mm, group=yyyy_mm)) + geom_line()
