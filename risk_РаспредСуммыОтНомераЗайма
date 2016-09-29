@@ -8,7 +8,7 @@ sqldf.RPostgreSQL.dbname ="risk",
 sqldf.RPostgreSQL.host ="192.168.100.21",
 sqldf.RPostgreSQL.port =5432)
  
-stats <- sqldf("select ЗаймПоСчету,ЗапрашиваемаяСумма,ВыданнаяСумма from ДанныеЗаявок where ВыданнаяСумма > 0", drv="PostgreSQL")
+stats <- sqldf("select ЗаймПоСчету,ЗапрашиваемаяСумма,ВыданнаяСумма from ДанныеЗаявок where ВыданнаяСумма > 0 and ЗаймПоСчету > 1", drv="PostgreSQL")
 glimpse(stats)
 #t <- stats %>% filter(ЗаймПоСчету < 40,ВыданнаяСумма < 20001) %>% mutate(cat = as.integer(cut(ВыданнаяСумма, breaks = c(3001,6001,9001,12001,15001,18001,20001))))
 t <- stats %>% filter(ЗаймПоСчету < 40,ВыданнаяСумма < 20001) %>% mutate(cat = 3000*findInterval(ВыданнаяСумма, c(1,3001,6001,9001,12001,15001,18001,20001)))
@@ -20,3 +20,12 @@ z2 <- t %>% select(ЗаймПоСчету,cat)
 z3 <- count(z2,c("ЗаймПоСчету","cat"))
 #head(z3)
 ggplot(z3, aes(x=ЗаймПоСчету, y=freq, colour=cat, group=cat)) + geom_line()
+
+
+df <- t %>% 
+   group_by(ЗаймПоСчету, cat) %>%
+   summarise(count = n()) %>%
+   mutate(freq = count/sum(count))
+   
+df %>% filter(ЗаймПоСчету == 30) %>% select(freq) %>% colSums()
+ggplot(df, aes(x=ЗаймПоСчету, y=freq, colour=cat, group=cat)) + geom_line()
