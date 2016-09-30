@@ -38,3 +38,14 @@ ggplot(df, aes(x=ЗаймПоСчету, y=freq, fill=cat)) + geom_area() +
     panel.border = element_blank(),
     panel.background = element_blank()) +
     scale_x_continuous(breaks = round(seq(min(df$ЗаймПоСчету), max(df$ЗаймПоСчету), by = 1),1))
+    
+require(scales)
+
+ggplot(df, aes(x=ЗаймПоСчету, y=freq, fill=cat)) + geom_area() +
+  theme_bw() +
+  theme(axis.line = element_line(colour = "black"),
+    panel.grid.major = element_blank(),
+    panel.grid.minor = element_blank(),
+    panel.border = element_blank(),
+    panel.background = element_blank()) + 
+    scale_x_continuous(breaks=pretty_breaks(n=20))
