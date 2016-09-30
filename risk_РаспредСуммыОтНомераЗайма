@@ -30,14 +30,14 @@ df <- t %>%
 df %>% filter(ЗаймПоСчету == 30) %>% select(freq) %>% colSums()
 #ggplot(df, aes(x=ЗаймПоСчету, y=freq, colour=cat, group=cat)) + geom_line()
 df$cat <- as.factor(df$cat)
-ggplot(df, aes(x=ЗаймПоСчету, y=freq, fill=cat)) + geom_area() +
-  theme_bw() +
-  theme(axis.line = element_line(colour = "black"),
-    panel.grid.major = element_blank(),
-    panel.grid.minor = element_blank(),
-    panel.border = element_blank(),
-    panel.background = element_blank()) +
-    scale_x_continuous(breaks = round(seq(min(df$ЗаймПоСчету), max(df$ЗаймПоСчету), by = 1),1))
+#ggplot(df, aes(x=ЗаймПоСчету, y=freq, fill=cat)) + geom_area() +
+#  theme_bw() +
+#  theme(axis.line = element_line(colour = "black"),
+#    panel.grid.major = element_blank(),
+#    panel.grid.minor = element_blank(),
+#    panel.border = element_blank(),
+#    panel.background = element_blank()) +
+#    scale_x_continuous(breaks = round(seq(min(df$ЗаймПоСчету), max(df$ЗаймПоСчету), by = 1),1))
     
 require(scales)
 
