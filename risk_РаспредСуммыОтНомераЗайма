@@ -36,4 +36,5 @@ ggplot(df, aes(x=ЗаймПоСчету, y=freq, fill=cat)) + geom_area() +
     panel.grid.major = element_blank(),
     panel.grid.minor = element_blank(),
     panel.border = element_blank(),
-    panel.background = element_blank()) 
+    panel.background = element_blank()) +
+    scale_x_continuous(breaks = round(seq(min(df$ЗаймПоСчету), max(df$ЗаймПоСчету), by = 1),1))
