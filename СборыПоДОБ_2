@@ -1,0 +1,45 @@
+library(ggplot2)
+library(sqldf)
+
+stats <- sqldf("
+select
+
+t.DOB,
+t.YYYY_MM,
+sum(sum(t.payed)) over (PARTITION BY YYYY_MM ORDER BY DOB) as payed
+
+from
+(select 
+ 
+ Concat (Extract (year from t1.ДатаВыдачи), '_', case when Extract (month from t1.ДатаВыдачи)::text not in ('10', '11', '12') then concat('0', Extract (month from t1.ДатаВыдачи)) else Extract (month from t1.ДатаВыдачи)::text end) AS YYYY_MM,
+ t2.DOB as DOB, 
+ t2.payed as payed
+ 
+ from ДанныеЗаявок as t1
+ 
+ left join (
+ select
+ 
+ id_заявки as id, 
+ ДеньЖизниЗайма as DOB, 
+ ОплатаПроценты + ОплатаШтрафы + ОплатаДопСоглашения + ОплатаОсновнойДолг as payed
+ 
+ from \042lifeCycle\042 
+ where ДеньЖизниЗайма < 151
+ 
+ ) as t2 on t1.НомерЗаявки = t2.id
+ 
+ where ВыданнаяСумма  > 0 and 
+ ДатаВыдачи > '2016-01-01'
+ and
+ ДатаВыдачи < '2016-09-01') as t
+ 
+ group by 
+ t.DOB, t.YYYY_MM
+ 
+ order by t.DOB
+
+",drv="PostgreSQL")
+
+t$payed <- t$payed / 1000000
+ggplot(t, aes(x= dob, y=payed, colour=yyyy_mm, group=yyyy_mm)) + geom_line() + scale_x_continuous(breaks=pretty_breaks(n=20))
