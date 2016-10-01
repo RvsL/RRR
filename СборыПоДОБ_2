@@ -42,4 +42,4 @@ from
 ",drv="PostgreSQL")
 
 t$payed <- t$payed / 1000000
-ggplot(t, aes(x= dob, y=payed, colour=yyyy_mm, group=yyyy_mm)) + geom_line() + scale_x_continuous(breaks=pretty_breaks(n=20))
+ggplot(t, aes(x= dob, y=payed, colour=yyyy_mm, group=yyyy_mm)) + geom_line() + scale_x_continuous(breaks=pretty_breaks(n=20)) + ggtitle("Cumulative payments by DOB, M")
