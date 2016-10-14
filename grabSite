@@ -1,16 +1,42 @@
 library(dplyr)
 library(rvest)
+
 site = read_html("http://www.gsmarena.com/samsung-phones-9.php")
 nr_pages <- html_nodes(site,".nav-pages a") %>%
    html_text() %>% tail(.,1) %>% as.numeric
 
-wine_href <- html_nodes(site,".review-listing") %>% html_attr("href")
+phone_href <- html_nodes(site,".makers ul li") %>% html_nodes("a") %>% html_attr("href")
 
 info_xtr <- function(x){
-  page <- read_html(x)
-  review <- page %>% html_nodes("p.description") %>% 
-    html_text
-  review_info <- page %>% html_nodes(".info.small-9.columns span span") %>% 
-    html_text()
-  cbind(review, date = review_info[5], Alc = review_info[1])
+    page <- read_html(paste0("http://www.gsmarena.com/",x))
+    phoneName <- page %>% html_nodes("h1") %>% html_text
+ }
+
+
+info_xtr(phone_href[1])
+
+makers <- read_html("http://www.gsmarena.com/makers.php3") %>% html_nodes(".st-text") %>% html_nodes("a") %>% html_attr("href")
+
+maker_phones <- function(x) {
+
+phone_list <- list()
+maker_site <- paste0("http://www.gsmarena.com/",x)
+
+m <- regexpr("-[0-9].*.php", maker_site)
+mkr_id <- substr(maker_site,m+1,m+attr(m,"match.length")-5)
+mkr_site_base <- substr(maker_site,1,m-1)
+
+site <- read_html(maker_site)
+nr_pages <- html_nodes(site,".nav-pages a") %>%
+     html_text() %>% tail(.,1) %>% as.numeric
+for(i in 1:nr_pages)
+{
+page <- maker_site
+if (i > 1) {page <- paste0(mkr_site_base, "-f-", mkr_id,"-0-p",i,".php")}
+phone_href <- html_nodes(page,".makers ul li") %>% html_nodes("a") %>% html_attr("href")
+print(info_xtr(phone_href))
 }
+
+}
+
+maker_phones(makers[1]) %>% print
