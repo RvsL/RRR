@@ -1,8 +1,8 @@
 library(dplyr)
 library(rvest)
 site = read_html("http://www.gsmarena.com/samsung-phones-9.php")
-nr_pages <- html_nodes(site,".pagination li a") %>%
-  html_text() %>% tail(.,1) %>% as.numeric
+nr_pages <- html_nodes(site,".nav-pages a") %>%
+   html_text() %>% tail(.,1) %>% as.numeric
 
 wine_href <- html_nodes(site,".review-listing") %>% html_attr("href")
 
