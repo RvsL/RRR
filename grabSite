@@ -1,0 +1,16 @@
+library(dplyr)
+library(rvest)
+site = read_html("http://www.gsmarena.com/samsung-phones-9.php")
+nr_pages <- html_nodes(site,".pagination li a") %>%
+  html_text() %>% tail(.,1) %>% as.numeric
+
+wine_href <- html_nodes(site,".review-listing") %>% html_attr("href")
+
+info_xtr <- function(x){
+  page <- read_html(x)
+  review <- page %>% html_nodes("p.description") %>% 
+    html_text
+  review_info <- page %>% html_nodes(".info.small-9.columns span span") %>% 
+    html_text()
+  cbind(review, date = review_info[5], Alc = review_info[1])
+}
