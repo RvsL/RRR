@@ -1,42 +1,48 @@
 library(dplyr)
-library(rvest)
 
-site = read_html("http://www.gsmarena.com/samsung-phones-9.php")
-nr_pages <- html_nodes(site,".nav-pages a") %>%
-   html_text() %>% tail(.,1) %>% as.numeric
-
-phone_href <- html_nodes(site,".makers ul li") %>% html_nodes("a") %>% html_attr("href")
-
-info_xtr <- function(x){
-    page <- read_html(paste0("http://www.gsmarena.com/",x))
+info_xtr_list <- function(x){
+llist <- list()
+for(i in 1:length(x)) {
+    page <- read_html(paste0("http://www.gsmarena.com/",x[i]))
     phoneName <- page %>% html_nodes("h1") %>% html_text
+    llist[i] <- phoneName
  }
-
-
-info_xtr(phone_href[1])
+  return(llist)
+}
 
 makers <- read_html("http://www.gsmarena.com/makers.php3") %>% html_nodes(".st-text") %>% html_nodes("a") %>% html_attr("href")
 
 maker_phones <- function(x) {
 
-phone_list <- list()
+phone_list <- data.frame()
+
 maker_site <- paste0("http://www.gsmarena.com/",x)
 
 m <- regexpr("-[0-9].*.php", maker_site)
 mkr_id <- substr(maker_site,m+1,m+attr(m,"match.length")-5)
 mkr_site_base <- substr(maker_site,1,m-1)
 
-site <- read_html(maker_site)
-nr_pages <- html_nodes(site,".nav-pages a") %>%
-     html_text() %>% tail(.,1) %>% as.numeric
+m <- regexpr("-.*.php", x)
+mkr_name <- substr(x,1,m-1)
+
+nr_pages <- html_nodes(read_html(maker_site),".nav-pages a") %>% html_text() %>% tail(.,1) %>% as.numeric
+nr_pages <- max(nr_pages,1)
+
 for(i in 1:nr_pages)
-{
+{cat("page ", " # ", i, " of ", nr_pages, "\n")
 page <- maker_site
 if (i > 1) {page <- paste0(mkr_site_base, "-f-", mkr_id,"-0-p",i,".php")}
-phone_href <- html_nodes(page,".makers ul li") %>% html_nodes("a") %>% html_attr("href")
-print(info_xtr(phone_href))
+phone_href <- html_nodes(read_html(page),".makers ul li") %>% html_nodes("a") %>% html_attr("href")
+
+d <- as.data.frame(cbind(mkr_name, info_xtr_list(phone_href))) %>% setNames(nm = c("maker","phone"))
+phone_list <- rbind(phone_list,d)
 }
 
+return(phone_list)
 }
 
-maker_phones(makers[1]) %>% print
+phones <- data.frame()
+for (i in 1:length(makers)){
+cat(makers[i], " # ", i, " of ", length(makers), "\n")
+phones <- rbind(phones,maker_phones(makers[i]))}
+head(phones)
