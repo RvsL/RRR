@@ -1,0 +1,153 @@
+замены на зпт
+
+] log4j - 10564  INFO --- smsLogger: SMS: 
+
+
+[2 
+на 2
+
+замены с зпт
+
+queue: 
+queue,
+
+try 
+try,
+
+
+#########################
+
+t <- read.csv("/Users/RvsL/Google Диск/2 - рабочее/16 - ВэбБанкир/DEC/smskafka.csv",sep=",",stringsAsFactors=F,header=F)
+t1 <- t %>% dplyr::mutate(ts = as.POSIXct(V1)) %>% filter(V2 == "Sending sms")
+
+g <- t1 %>% select(V2, V3) %>% group_by(V3) %>% summarise(n = n()) %>% group_by(n) %>% summarise(V3 = n())
+g
+#ggplot(g, aes(x=n,y=V3)) + geom_line() + xlab("количество попыток") + ylab("количество смс для этого количества попыток")
+
+t2 <- t %>% dplyr::mutate(ts = as.POSIXct(V1))
+td <- t2 %>% group_by(V3) %>% mutate(tdiff = ts - lag(ts, 1L))
+
+td <- na.omit(td)
+tdiff <- as.numeric(td1$tdiff)
+summary(tdiff)
+length(unique(t1$V3))
+
+
+###########################
+#[2016-10-31 20:29:27.000] log4j - 10564  INFO --- smsLogger: SMS: Putting to queue: 63535098
+#[2016-10-31 20:29:27.094] log4j - 10564  INFO --- smsLogger: SMS: Sending sms: 63535089, try 0
+
+#198.214.42.14 - - [21/Jul/1995:14:31:46 -0400] “GET /images/ HTTP/1.0” 200 17688
+#lahal.ksc.nasa.gov - - [24/Jul/1995:12:42:40 -0400] “GET /images/USA-logosmall.gif HTTP/1.0” 200 234
+
+parsed <- scan('/Users/RvsL/Google Диск/2 - рабочее/16 - ВэбБанкир/DEC/smskafka.csv', what = "character", sep = "\n") %>%
+  re_matches(
+    rex(
+
+      # Get the time of the request
+      "[",
+        capture(name = "time",
+          except_any_of("]")
+        ),
+      "]",
+
+      " log4j - 10564  INFO --- smsLogger: SMS: ",
+		#space, double_quote, "GET", space,
+
+      # Get the filetype of the request if requesting a file
+      capture(name = 'operation',
+          except_any_of(":")
+        ), ":", space,
+        
+       capture(name = 'id', except_some_of(",", "\n")),
+        
+       maybe(",", space, "try", space,
+        capture(name = 'try',
+          except_any_of("\n")
+        ) 
+        
+      )
+    )
+  ) 
+  
+  %>%
+  mutate(filetype = tolower(filetype),
+         time = as.POSIXct(time, format="%d/%b/%Y:%H:%M:%S %z"))
+         
+         
+         
+##############################
+parsed <- scan('/Users/RvsL/Google Диск/2 - рабочее/16 - ВэбБанкир/DEC/smskafka.csv', what = "character", sep = "\n")
+write.csv(parsed,"tmp.csv",row.names=F, quote=F)
+t <- read.csv("tmp.csv",header=F,stringsAsFactors=F)         
+t <- t[-c(1),]
+names(t) <- c("dt","operation","id","ntry","try")
+t$dt <- as.POSIXct(t$dt)
+summary(t$try)
+
+t1 <- t %>% filter(operation == "Sending sms")
+
+g <- t1 %>% select(operation, id) %>% group_by(id) %>% summarise(n = n()) %>% group_by(n) %>% summarise(id = n())
+g
+#ggplot(g, aes(x=n,y=id)) + geom_line() + xlab("количество попыток") + ylab("количество смс для этого количества попыток")
+
+#length(unique(t$id))
+#newdata <- td[order(-tdiff),] %>% head %>% print
+#t %>% filter(id == 63524097) %>% print
+
+td <- t %>% group_by(id) %>% mutate(tdiff = as.numeric(dt - lag(dt, 1L))) %>% select(id,tdiff) %>% na.omit %>% group_by(id) %>% summarise(tot = sum(tdiff))
+
+td1 <- td %>% filter(tot > 6)
+td2 <- td %>% filter(tot < 6)
+summary(td$tot)
+summary(td1$tot)
+summary(td2$tot)
+hist(td2$tot)
+length(unique(td1$id))
+
+
+###########################
+parsed <- scan('/Users/RvsL/Google Диск/2 - рабочее/16 - ВэбБанкир/DEC/dec-service-oul-log-20161101.csv', what = "character", sep = "\n")
+write.csv(parsed,"tmp.csv",row.names=F, quote=F)
+t <- read.csv("tmp.csv",header=F,stringsAsFactors=F)         
+t <- t[-c(1),]
+head(t)
+
+############################
+require(dplyr)
+
+parsed <- scan('/Users/RvsL/Google Диск/2 - рабочее/16 - ВэбБанкир/DEC/kafkasmslog.csv', what = "character", sep = "\n")
+
+for (i in 1:length(parsed))
+ {
+ parsed[i] <- gsub("\\] log4j - 10664  INFO --- smsLogger: SMS: ", replacement=",",parsed[i])
+ parsed[i] <- gsub("\\[2", "2",parsed[i])
+ parsed[i] <- gsub("queue: ", "queue,",parsed[i])
+ parsed[i] <- gsub("sms: ", "sms,",parsed[i])
+ parsed[i] <- gsub(" try ", "try,",parsed[i])
+ }
+
+parsed <- c("dt,operation,id,ntry,try",parsed)
+write.csv(parsed,"tmp.csv",row.names=F, quote=F)
+t <- read.csv("tmp.csv",header=F,stringsAsFactors=F)         
+t <- t[-c(1,2),]
+
+names(t) <- c("dt","operation","id","ntry","try")
+t$dt <- as.POSIXct(t$dt)
+summary(t$try)
+
+t1 <- t %>% filter(operation == "Sending sms")
+
+g <- t1 %>% select(operation, id) %>% group_by(id) %>% summarise(n = n()) %>% group_by(n) %>% summarise(id = n())
+g
+#ggplot(g, aes(x=n,y=id)) + geom_line() + xlab("количество попыток") + ylab("количество смс для этого количества попыток")
+
+td <- t %>% group_by(id) %>% mutate(tdiff = as.numeric(dt - lag(dt, 1L))) %>% select(id,tdiff) %>% na.omit %>% group_by(id) %>% summarise(total.time = sum(tdiff))
+
+sms.within.30.sec <- td %>% filter(total.time <= 30)
+sms.out.of.30.sec <- td %>% filter(total.time > 30)
+summary(td$total.time)
+summary(sms.within.30.sec$total.time)
+summary(sms.out.of.30.sec$total.time)
+hist(sms.within.30.sec$total.time)
+length(unique(sms.out.of.30.sec$id))

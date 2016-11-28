@@ -1,6 +1,7 @@
 b <- read.csv("/users/rvsl/downloads/phone_log.csv",header=T,stringsAsFactors=F, sep=",")
 
 library(dplyr)
+library(ggplot2)
 
 t <- b %>% filter(strptime(Продол.,"%H:%M:%S") - strptime("00:00:00","%H:%M:%S") > 5)
 nrow(t)
@@ -8,11 +9,6 @@ head(t)
 
 t2 <- b %>% filter(strptime(Продол.,"%H:%M:%S") - strptime("00:00:00","%H:%M:%S") < 6)
 nrow(t2)
-
-g <- t %>% select(Товар.услуга, Дата) %>% count(Товар.услуга, Дата)
-str(g)
-#plot(g$n)
-plot(density(g$n))
 
 ut1 <- unique(t$Товар.услуга) %>% as.data.frame %>% mutate(t1 = 1) %>% setNames(c("phone","t1"))
 ut2 <- unique(t2$Товар.услуга) %>% as.data.frame %>% mutate(t2 = 1) %>% setNames(c("phone","t2"))
@@ -41,6 +37,10 @@ tt <- b %>% mutate(ts = as.POSIXct(Дата))
 max(tt$ts)
 min(tt$ts)
 
-g1 <- g %>% group_by(n) %>% summarise(n_phones = n())
-g1
-ggplot(g1, aes(x=n,y=n_phones)) + geom_line()
+g2 <- t %>% select(Товар.услуга, Дата) %>% group_by(Товар.услуга) %>% summarise(n = n()) %>% group_by(n) %>% summarise(n_phones = n())
+ggplot(g2, aes(x=n,y=n_phones)) + geom_line() + xlab("сколько раз позвонил на один номер") + ylab("количество номеров")
+
+g2
+
+colSums(g2)
+nrow(ut1)

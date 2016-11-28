@@ -1,0 +1,54 @@
+require(dplyr)
+
+p <- scan('/Users/RvsL/Google Диск/2 - рабочее/17 - R/dec-service-out-log.log', what = "character", sep = "\n")
+
+#p <- scan('E:/DEC JAVA/dec-service/dec-service-0.0.1-SNAPSHOT/logs/dec-service.out.log', what = "character", sep = "\n")
+#p <- scan('E:/DEC JAVA/dec-service/dec-service-0.0.1-SNAPSHOT.old/logs/dec-service.out.log', what = "character", sep = "\n")
+
+i.error <- grep(" ERROR ",p)
+i.warning <- grep(" WARN ",p)
+
+length(i.warning)
+#p[i.warning]
+
+length(i.error)
+#p[i.error]
+
+parsed <- p[i.error]
+
+
+#[2016-11-21 13:59:18.855] log4j - 11200 ERROR --- FmsRESTController: Couldn't get fms response after session update: CAPCHA_NOT_READY
+ptext <- parsed[1]
+m <- regexpr(" ERROR ---", ptext)
+ptext <- substr(ptext, 1, m - 1)
+m <- regexpr("\\] log4j - ", ptext)
+procnum <- substr(ptext, m + 10, m + nchar(ptext))
+
+dt <- data.frame()
+for (i in 1:length(parsed)){
+#parsed[i] <- gsub("\\] log4j - 10664", "",parsed[i])
+parsed[i] <- gsub(paste0("\\] log4j - ",procnum), replacement=",",parsed[i])
+parsed[i] <- gsub("\\[", "",parsed[i])
+parsed[i] <- gsub("\\]", "",parsed[i])
+
+pos <- regexpr("\\ ERROR ",parsed[i])[1]
+#newval <- as.POSIXct(substr(parsed[i],1,pos))
+newval <- substr(parsed[i],1,pos)
+newevent <- substr(parsed[i],pos + 7, min(pos + 77, nchar(parsed[i])))
+newevent <- gsub(procnum, replacement="", newevent)
+newevent <- gsub("--- ", replacement="", newevent)
+newline <- as.data.frame(cbind(newval,newevent)) %>% setNames(nm = c("dt","event"))
+dt <- rbind(dt,newline)
+}
+head(dt)
+
+
+dt$dt <- as.POSIXct(dt$dt)
+
+ts <- ts(dt)
+plot.ts(ts)
+
+dt.combined <- dt %>% group_by(event) %>% summarise(n = n()) %>% arrange(desc(n)) %>% head %>% print
+dt.combined$n
+#dt.combined %>% arrange(desc(n)) %>% head %>% print
+dt.combined %>% select(n) %>% colSums %>% print
