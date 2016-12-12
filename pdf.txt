@@ -1,0 +1,8 @@
+library('tm')
+file <- '/users/rvsl/downloads/fn.pdf'
+Rpdf <- readPDF(control = list(text = "-layout"))
+corpus <- VCorpus(URISource(file), 
+      readerControl = list(reader = Rpdf))
+corpus.array <- content(content(corpus)[[1]])
+
+Contributions and grants (PartVIII,line Program serVIce revenue (PartVIII,line Investmentincome(PartVIII,column(A),|ines Otherrevenue(PartVIII,column(A),|ines

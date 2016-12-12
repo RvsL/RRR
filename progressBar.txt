@@ -1,0 +1,12 @@
+begdate <- min(dt$Date)
+enddate <- max(dt$Date)
+curdate <- floor_date(begdate,"day")
+bd.enddate <- floor_date(enddate, "day")
+
+pb <- txtProgressBar(style = 3, min=0, max = as.numeric(diff(c(begdate, enddate))))
+while(curdate <= bd.enddate)
+{
+curdate <- curdate + 86400
+setTxtProgressBar(pb, as.numeric(diff(c(begdate, curdate))))
+}
+close(pb)

@@ -1,0 +1,336 @@
+#repos='http://cran.us.r-project.org'
+require(dplyr)
+
+#dt <- read.csv("/Users/RvsL/Downloads/Nifty 50.csv", sep = ",", header=T, stringsAsFactors=F)
+#dt <- read.csv("/Users/RvsL/Downloads/NF - 2 year.csv", sep = ",", header=T, stringsAsFactors=F)
+
+parsed <- scan('/Users/RvsL/Downloads/NF - 2 year.csv', what = "character", sep = "\n")
+
+for (i in 2:length(parsed))
+ {
+ 
+ ptext <- parsed[i]
+
+ if(grepl("PM", parsed[i])){
+
+ #ptext <- "NIFTY-I,10-14-2016 11:54,8589.7,8589.95,8588.55,8589.2,19913850,7425"
+ #ptext <- "NIFTY-I,10-14-2016 11:54:59,8589.7,8589.95,8588.55,8589.2,19913850,7425"
+ #ptext <- "NIFTY-I,9-30-2016 01:01:59 PM,8623,8623,8618.25,8618.25,24241876,17250"
+ #ptext <- "NIFTY-I,1-13-2015 1:23:59 PM,8374.5,8374.6,8371.95,8371.95,18375624,12950"
+ #ptext <- "NIFTY-I,1-20-2015 10:24:59,8612.1,8615,8612.1,8615,20639624,12650"
+ #ptext <- "NIFTY-I,1-20-2015 1:24:59,8612.1,8615,8612.1,8615,20639624,12650"
+ #ptext <- "NIFTY-I,1-2-2015 1:24:59,8612.1,8615,8612.1,8615,20639624,12650"
+
+ m <- regexpr(" PM", ptext)
+ txt.tail <- substr(ptext, m + 3, nchar(ptext))
+ ptext <- substr(ptext, 1, m - 1)
+ m <- regexpr("-201", ptext)
+ n <- regexpr(":", ptext)
+ txt.before <- substr(ptext, 1, m + 5)
+ txt.after <- substr(ptext, n, nchar(ptext))
+ hour <- substr(ptext, m + 6, n - 1) %>% as.numeric
+ hour <- ifelse(hour < 12, hour + 12, hour) %>% as.character
+ ptext <- paste0(txt.before, hour, txt.after, txt.tail)
+ 
+ #ptext
+ 
+ }
+ 
+ m <- regexpr(":", ptext)
+ txt.before <- substr(ptext, 1, m)
+ ltext <- substr(ptext, m, nchar(ptext))
+ n <- regexpr(",", ltext)
+ txt.after <- substr(ltext, n, nchar(ptext))
+ ptext <- substr(ptext, m + 1, m + 2)
+ 
+ m <- regexpr("-201", txt.before)
+ hour <- substr(txt.before, m + 6, nchar(txt.before) - 1) %>% as.numeric
+ hour <- ifelse(hour < 10, paste0("0",as.character(hour)), as.character(hour))
+ txt.before <- substr(txt.before, 1, m + 5)
+
+ # теперь дату надо сделать в формате мм-дд
+ ltext <- txt.before
+ m <- regexpr(",", ltext)
+ n <- regexpr("-201", ltext)
+ ltext <- substr(ltext, m + 1 , n - 1)
+ ytext <- substr(txt.before, n, n + 6)
+ txt.before <- substr(txt.before, 1 , m)
+ #1-2 = 3
+ #1-02 = 4
+ #12-1 = 3
+ m <- regexpr("-", ltext)
+ mtext <- substr(ltext, 1, m - 1)
+ dtext <- substr(ltext, m + 1, nchar(ltext))
+ if(nchar(mtext) == 1){mtext <- paste0("0", mtext)}
+ if(nchar(dtext) == 1){dtext <- paste0("0", dtext)}
+ 
+ ptext <- paste0(txt.before, mtext, "-", dtext, ytext, hour, ":", ptext, txt.after)
+
+ #ptext
+
+ parsed[i] <- ptext
+
+ }
+
+write.csv(parsed,"tmp.csv",row.names=F, quote=F)
+dt <- read.csv("tmp.csv",header=F,stringsAsFactors=F)         
+
+dt <- dt[-c(1,2),]
+names(dt) <- c("Ticker","Date.Time","OPEN","HIGH","LOW","CLOSE","OPEN.INTEREST","VOLUME")
+
+
+#Ticker,Date/Time,OPEN,HIGH,LOW,CLOSE,OPEN INTEREST,VOLUME
+#Date,Nifty 50 O,Nifty 50 H,Nifty 50 L,Nifty 50 C,Nifty 50 V
+
+#dt$Date <- strptime(dt$Date,"%d-%m-%Y %H:%M",tz="GMT")
+#dt$Date <- strptime(dt$Date,"%d-%m-%Y %H:%M")
+#dt$Date <- as.POSIXct(dt$Date)
+
+
+#dt <- dt %>% mutate(Date = ifelse(grepl("\\/", Date.Time),as.POSIXct(strptime(Date.Time,"%m/%d/%Y %H:%M")),
+#as.POSIXct(strptime(Date.Time,"%m-%d-%Y %H:%M"))))
+
+#dt <- dt %>% mutate(Date = ifelse(grepl("\\/", Date.Time),strptime(Date.Time,"%m/%d/%Y %H:%M"), strptime(Date.Time,"%m-%d-%Y %H:%M")))
+
+dt$Date <- strptime(dt$Date.Time,"%m-%d-%Y %H:%M")
+dt$Date <- as.POSIXct(dt$Date)
+
+summary(dt)
+
+#as.numeric(max(dt$Date) - min(dt$Date), units= "secs")
+#ts <- ts(dt$Nifty.50.H, frequency=as.numeric(max(dt$Date) - min(dt$Date), units= "secs"), start=c(2016,8,1,9,15))
+#plot(ts)
+
+# так как надо посчитать много параметров для дней, то логично сделать таблицу в которой 
+# будет колонка в которой хранится вектор значений для каждого дня. вектор длинной 24*60
+# а дальше уже можно пристыковывать к этому вектору колонки с искомыми значениями типа среднего или стандартного отклонения.
+# так сделать не вышло, так что сделаю просто нужные колонки для каждого дня внутри цикла
+
+library(lubridate)
+
+trend.coef.before <- function(tdt, ldate)
+{
+t.1 <- tdt %>% filter(dt <= ldate)
+if(nrow(t.1) > 0){
+fit.1 <- glm(t.1$navg~t.1$dt)
+return(coef(fit.1)[2]/abs(coef(fit.1)[2]))} else {return(0)}
+}
+
+trend.coef.after <- function(tdt, ldate)
+{
+t.1 <- tdt %>% filter(dt >= ldate)
+if(nrow(t.1) > 0){
+fit.1 <- glm(t.1$navg~t.1$dt)
+return(coef(fit.1)[2]/abs(coef(fit.1)[2]))} else {return(0)}
+}
+
+trend.coef.between <- function(tdt, ldate1, ldate2)
+{
+t.1 <- tdt %>% filter(dt >= ldate1 & dt <= ldate2)
+if(nrow(t.1) > 0){
+fit.1 <- glm(t.1$navg~t.1$dt)
+return(coef(fit.1)[2]/abs(coef(fit.1)[2]))} else {return(0)}
+}
+
+#begdate <- strptime(min(dt$Date),"%d-%m-%Y %H:%M",tz="GMT")
+#enddate <- strptime(max(dt$Date),"%d-%m-%Y %H:%M",tz="GMT")
+
+begdate <- min(dt$Date)
+enddate <- max(dt$Date)
+curdate <- floor_date(begdate,"day")
+bd.enddate <- floor_date(enddate, "day")
+
+#curdate <- curdate + 86400
+#Ticker,Date/Time,OPEN,HIGH,LOW,CLOSE,OPEN INTEREST,VOLUME
+tdt <- dt %>% select(Date, OPEN, HIGH, LOW, CLOSE) %>% setNames(c("dt","no","nh","nl","nc")) %>% mutate(no = as.numeric(no), 
+nh = as.numeric(nh), nl = as.numeric(nl), nc = as.numeric(nc), 
+navg = (nh - nl)/2 + nl) %>% filter(dt >= curdate & dt < curdate + 86400 - 1) %>% arrange(dt)
+plot(tdt$dt, tdt$navg, col = 1)
+lines(tdt$dt, tdt$navg, col = 1)
+fit <- glm(tdt$navg~tdt$dt)
+abline(fit, col="red", lwd=2)
+
+co <- coef(fit)
+
+#lines(tdt$dt, tdt$nl, col = 2)
+#lines(tdt$dt, tdt$nh, col = 3)
+#http://stackoverflow.com/questions/15102254/how-do-i-add-different-trend-lines-in-r
+
+
+################# 13-14
+
+coef.sign.13.1 <- trend.coef.before(tdt, curdate + 12 * 3600)
+coef.sign.13.2 <- trend.coef.after(tdt, curdate + 14 * 3600)
+coef.sign.13.3 <- trend.coef.between(tdt, curdate + 12 * 3600, curdate + 14 * 3600)
+
+q.13 <- ifelse(coef.sign.13.1 != coef.sign.13.3 & coef.sign.13.2 == coef.sign.13.3, 1, 0)
+q.14 <- ifelse(coef.sign.13.1 != coef.sign.13.3 & coef.sign.13.2 != coef.sign.13.3, 1, 0)
+
+################# 13-14
+
+################# 15
+
+coef.sign <- co[2]/abs(co[2])
+
+coef.sign.15.1 <- trend.coef.before(tdt, curdate + 13.5 * 3600)
+coef.sign.15.2 <- trend.coef.before(tdt, curdate + 14.5 * 3600)
+coef.sign.15.3 <- trend.coef.before(tdt, curdate + 15.5 * 3600)
+
+q.15.c <- ifelse(coef.sign.15.3 != coef.sign, 1, 0)
+q.15.b <- ifelse(coef.sign.15.2 != coef.sign & q.15.c == 0, 1, 0)
+q.15.a <- ifelse(coef.sign.15.1 != coef.sign & q.15.b == 0 & q.15.c == 0, 1, 0)
+
+################# 15
+
+################# 17
+
+coef.sign.17.0 <- trend.coef.before(tdt, curdate + 14.5 * 3600)
+coef.sign.17.1 <- trend.coef.after(tdt, curdate + 15 * 3600)
+coef.sign.17.2 <- trend.coef.after(tdt, curdate + 15.25 * 3600)
+coef.sign.17.3 <- trend.coef.after(tdt, curdate + 15.5 * 3600)
+
+trend.change <- coef.sign != coef.sign.17.0
+
+q.17.a <- ifelse(trend.change & coef.sign.17.1 == coef.sign, 1, 0)
+q.17.b <- ifelse(trend.change & coef.sign.17.1 == coef.sign & q.17.a == 0, 1, 0)
+q.17.c <- ifelse(trend.change & coef.sign.17.1 == coef.sign & q.17.a == 0 & q.17.b == 0, 1, 0)
+
+################# 17
+
+
+fit.l <- glm(tdt$nl~tdt$dt)
+fit.h <- glm(tdt$nh~tdt$dt)
+
+#tdt <- tdt %>% mutate(lfit = co[1] + dt*co[2], updown = (navg - lfit)/abs(navg - lfit))
+#Ошибка: '*' not defined for "POSIXt" objects
+
+tdt$lfit <- fit$fitted.values
+tdt <- tdt %>% mutate(updown = (navg - lfit)/abs(navg - lfit))
+
+t <- diff(tdt$updown) %>% as.data.frame %>% setNames(c("ndiff")) %>% mutate(up = ifelse(ndiff > 0,1,0), down = ifelse(ndiff < 0,1,0))
+sum(t$up)
+sum(t$down)
+
+#abline(fit.l, col="red", lwd=2)
+#abline(fit.h, col="blue", lwd=2)
+
+dt.examined <- dt %>% select(Date, Nifty.50.O, Nifty.50.H, Nifty.50.L, Nifty.50.C) %>% setNames(c("dt","no","nh","nl","nc")) %>% mutate(navg = (nh - nl)/2 + nl) %>% arrange(dt)
+
+###################
+# цикл по всем дням
+
+res <- data.frame()
+while(curdate <= bd.enddate)
+{
+
+tdt <- dt.examined %>% filter(dt >= curdate & dt < curdate + 86400 - 1) %>% arrange(dt)
+
+if(nrow(tdt) > 0){
+# всякие переменные для одного дня
+
+tdt.start.val <- tdt$navg[1]
+tdt.end.val <- tdt$navg[length(tdt$navg)]
+
+tdt.range <- range(tdt$navg)
+tdt.sd <- sd(tdt$navg)
+interday.diff <- diff(tdt$navg)
+tdt.diff.range <- range(interday.diff)
+
+#tdt.jump.down <- abs(range(interday.diff)[1]) > tdt.sd
+#tdt.jump.up <- abs(range(interday.diff)[2]) > tdt.sd
+
+#tdt.max.jump.up <- abs(range(interday.diff)[2])
+#tdt.max.jump.down <- abs(range(interday.diff)[1])
+
+tdt.volatility <- tdt.sd/mean(tdt$navg)
+
+######################################
+
+
+fit <- glm(tdt$navg~tdt$dt)
+co <- coef(fit)
+
+################# 13-14
+
+coef.sign.13.1 <- trend.coef.before(tdt, curdate + 12 * 3600)
+coef.sign.13.2 <- trend.coef.after(tdt, curdate + 14 * 3600)
+coef.sign.13.3 <- trend.coef.between(tdt, curdate + 12 * 3600, curdate + 14 * 3600)
+
+q.13 <- ifelse(coef.sign.13.1 != coef.sign.13.3 & coef.sign.13.2 == coef.sign.13.3, 1, 0)
+q.14 <- ifelse(coef.sign.13.1 != coef.sign.13.3 & coef.sign.13.2 != coef.sign.13.3, 1, 0)
+
+################# 13-14
+
+################# 15
+
+coef.sign <- co[2]/abs(co[2])
+
+coef.sign.15.1 <- trend.coef.before(tdt, curdate + 13.5 * 3600)
+coef.sign.15.2 <- trend.coef.before(tdt, curdate + 14.5 * 3600)
+coef.sign.15.3 <- trend.coef.before(tdt, curdate + 15.5 * 3600)
+
+q.15.c <- ifelse(coef.sign.15.3 != coef.sign, 1, 0)
+q.15.b <- ifelse(coef.sign.15.2 != coef.sign & q.15.c == 0, 1, 0)
+q.15.a <- ifelse(coef.sign.15.1 != coef.sign & q.15.b == 0 & q.15.c == 0, 1, 0)
+
+################# 15
+
+################# 17
+
+coef.sign.17.0 <- trend.coef.before(tdt, curdate + 14.5 * 3600)
+coef.sign.17.1 <- trend.coef.after(tdt, curdate + 15 * 3600)
+coef.sign.17.2 <- trend.coef.after(tdt, curdate + 15.25 * 3600)
+coef.sign.17.3 <- trend.coef.after(tdt, curdate + 15.5 * 3600)
+
+trend.change <- coef.sign != coef.sign.17.0
+
+q.17.a <- ifelse(trend.change & coef.sign.17.1 == coef.sign, 1, 0)
+q.17.b <- ifelse(trend.change & coef.sign.17.1 == coef.sign & q.17.a == 0, 1, 0)
+q.17.c <- ifelse(trend.change & coef.sign.17.1 == coef.sign & q.17.a == 0 & q.17.b == 0, 1, 0)
+
+################# 17
+
+
+tdt$lfit <- fit$fitted.values
+tdt <- tdt %>% mutate(updown = (navg - lfit)/abs(navg - lfit))
+
+t <- diff(tdt$updown) %>% as.data.frame %>% setNames(c("ndiff")) %>% mutate(up = ifelse(ndiff > 0,1,0), down = ifelse(ndiff < 0,1,0))
+tdt.ups <- sum(t$up)
+tdt.downs <- sum(t$down)
+
+######################################
+#tdt.start.val <- tdt$navg[1]
+#tdt.end.val <- tdt$navg[length(tdt$navg)]
+#tdt.range <- range(tdt$navg)
+#tdt.sd <- sd(tdt$navg)
+#interday.diff <- diff(tdt$navg)
+#tdt.diff.range <- range(interday.diff)
+#tdt.volatility <- tdt.sd/mean(tdt$navg)
+#q.13 <- ifelse(coef.sign.13.1 != coef.sign.13.3 & coef.sign.13.2 == coef.sign.13.3, 1, 0)
+#q.14 <- ifelse(coef.sign.13.1 != coef.sign.13.3 & coef.sign.13.2 != coef.sign.13.3, 1, 0)
+#q.15.c <- ifelse(coef.sign.15.3 != coef.sign, 1, 0)
+#q.15.b <- ifelse(coef.sign.15.2 != coef.sign & q.15.c == 0, 1, 0)
+#q.15.a <- ifelse(coef.sign.15.1 != coef.sign & q.15.b == 0 & q.15.c == 0, 1, 0)
+#q.17.a <- ifelse(trend.change & coef.sign.17.1 == coef.sign, 1, 0)
+#q.17.b <- ifelse(trend.change & coef.sign.17.1 == coef.sign & q.17.a == 0, 1, 0)
+#q.17.c <- ifelse(trend.change & coef.sign.17.1 == coef.sign & q.17.a == 0 & q.17.b == 0, 1, 0)
+#tdt.ups <- sum(t$up)
+#tdt.downs <- sum(t$down)
+
+
+d <- cbind.data.frame(tdt.sd, curdate, tdt.start.val, 
+tdt.end.val, tdt.diff.range[1], tdt.diff.range[2], 
+tdt.volatility, q.13, q.14, q.15.a, q.15.b, q.15.c, 
+q.17.a, q.17.b, q.17.c, tdt.ups, 
+tdt.downs) %>% setNames(nm = c("sd","day", 
+"start.val", "end.val", "range.min", "range.max", 
+"volatility", "q.13", "q.14", "q.15.a", "q.15.b", 
+"q.15.c", "q.17.a", "q.17.b", "q.17.c", "tdt.ups", 
+"tdt.downs"))
+
+res <- rbind(res, d)
+}#есть данные за этот день
+
+curdate <- curdate + 86400
+
+}

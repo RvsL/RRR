@@ -1,0 +1,11 @@
+#Client ID:	78vimr62g819i3
+#Client Secret:	kWWcRKbf8i5Y8s2k
+#https://www.r-bloggers.com/analyze-linkedin-with-r/
+
+app_name <- "collector"
+consumer_key <- "78vimr62g819i3"
+consumer_secret <- "kWWcRKbf8i5Y8s2k"
+
+#Then you can authenticate with:
+
+in.auth <- inOAuth(app_name, consumer_key, consumer_secret)
