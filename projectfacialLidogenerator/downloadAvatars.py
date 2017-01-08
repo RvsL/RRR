@@ -37,8 +37,8 @@ def downloadAvas(srcDownloadPrefix, dstPrefix, facesSrc, filePrefix, hmf, cv2, n
     df = pd.read_csv(facesSrc)
     accountIDs = df['col2']
 
-    login = "RvsdL@bk.ru"
-    password = "SargeVKONTAKTE"
+    login = "user@domain.com"
+    password = "*******"
     connection = VkApi(login, password)
 
     start_time = datetime.datetime.now()
