@@ -110,7 +110,13 @@ Sys.time()
 dt.examined <- dt %>% select(Date, OPEN, HIGH, LOW, CLOSE) %>% setNames(c("dt","no","nh","nl","nc")) %>% mutate(no = as.numeric(no), 
 nh = as.numeric(nh), nl = as.numeric(nl), nc = as.numeric(nc), navg = (nh - nl)/2 + nl) %>% arrange(dt)
 
-Sys.time()
+
+############################################################################
+
+
+pb <- txtProgressBar(style = 3, min=0, max = as.numeric(diff(c(begdate, enddate))))
+#curdate <- strptime("2016-12-01","%Y-%m-%d")
+tstart <- Sys.time()
 
 ###################
 # цикл по всем дням
@@ -183,6 +189,7 @@ q.14 <- ifelse(coef.sign.13.1 != coef.sign.13.3 & coef.sign.13.2 != coef.sign.13
 
 coef.sign <- as.numeric(co[2]/abs(co[2]))
 
+coef.sign.15.0 <- trend.coef.before(tdt, curdate + 12.5 * 3600)
 coef.sign.15.1 <- trend.coef.before(tdt, curdate + 13.5 * 3600)
 coef.sign.15.2 <- trend.coef.before(tdt, curdate + 14.5 * 3600)
 coef.sign.15.3 <- trend.coef.before(tdt, curdate + 15.5 * 3600)
@@ -190,6 +197,7 @@ coef.sign.15.3 <- trend.coef.before(tdt, curdate + 15.5 * 3600)
 q.15.c <- ifelse(coef.sign.15.3 != coef.sign, 1, 0)
 q.15.b <- ifelse(coef.sign.15.2 != coef.sign & q.15.c == 0, 1, 0)
 q.15.a <- ifelse(coef.sign.15.1 != coef.sign & q.15.b == 0 & q.15.c == 0, 1, 0)
+q.15.z <- ifelse(coef.sign.15.0 != coef.sign & q.15.b == 0 & q.15.c == 0 & q.15.a == 0, 1, 0)
 
 ################# 15
 
@@ -216,16 +224,21 @@ diff.updown <- diff(tdt.xts$updown)
 peaks.q.11 <- c(findPeaks(tdt.xts$navg),findValleys(tdt.xts$navg)) %>% as.data.frame%>% setNames(c("num")) %>% arrange(num)
 q.11.peaks <- data.frame()
 for(i in 2:nrow(peaks.q.11)){
-q.11.peaks <- rbind(q.11.peaks,abs(tdt[5,]$navg - tdt[3,]$navg))}
+q.11.peaks <- rbind(q.11.peaks,abs(tdt[i-1,]$navg - tdt[i,]$navg))}
 names(q.11.peaks) <- c("peaks")
 
 peaks <- c(1,findPeaks(diff.updown),findValleys(diff.updown),nrow(diff.updown)) %>% as.data.frame%>% setNames(c("num")) %>% arrange(num)
 q.18 <- 0 
+q.18.r <- 0
 for(i in 2:nrow(peaks)){
 t1 <- as.POSIXct(diff.updown[peaks[i-1,],])
 t2 <- as.POSIXct(diff.updown[peaks[i,],])
+val.t1 <- as.numeric(tdt.xts[t1]$navg)
+val.t2 <- as.numeric(tdt.xts[t2]$navg)
 q.18 <- max(q.18, as.numeric(t2-t1))
+q.18.r <- max(q.18.r, abs(val.t1-val.t2))
 }
+
 ################# 18
 
 ################# 19-20
@@ -421,7 +434,7 @@ if(tdt.16.ups == 4){q.16 <- 8}
 
 d <- cbind.data.frame(tdt.sd, curdate, tdt.start.val, 
 tdt.end.val, tdt.diff.range[1], tdt.diff.range[2], 
-tdt.volatility, q.13, q.14, q.15.a, q.15.b, q.15.c, 
+tdt.volatility, q.13, q.14, q.15.a, q.15.b, q.15.c, q.15.z, 
 q.17.a, q.17.b, q.17.c, tdt.ups, 
 tdt.downs, mean(abs(interday.diff)),
 q.21.a,q.21.b,q.22.a,q.22.b,q.24.a,q.24.b,
@@ -432,10 +445,10 @@ q.20.15,
 q.20.30,
 q.20.45,
 q.20.60,
-q.9.vol,q.9.dt,q.18,q.10,q.16,q.11) %>% setNames(nm = c("sd","day", 
+q.9.vol,q.9.dt,q.18, q.18.r,q.10,q.16,q.11) %>% setNames(nm = c("sd","day", 
 "start.val", "end.val", "range.min", "range.max", 
-"volatility", "q.13", "q.14", "q.15.a", "q.15.b", 
-"q.15.c", "q.17.a", "q.17.b", "q.17.c", "tdt.ups", 
+"volatility", "q.13", "q.14", "q.15.a", "q.15.b","q.15.c", "q.15.z", 
+"q.17.a", "q.17.b", "q.17.c", "tdt.ups", 
 "tdt.downs", "mean.interday.diff","q.21.a","q.21.b","q.22.a","q.22.b",
 "q.24.a","q.24.b",
 "q.19",
@@ -445,16 +458,22 @@ q.9.vol,q.9.dt,q.18,q.10,q.16,q.11) %>% setNames(nm = c("sd","day",
 "q.20.30",
 "q.20.45",
 "q.20.60",
-"q.9.vol","q.9.dt","q.18","q.10","q.16","q.11"))
+"q.9.vol","q.9.dt","q.18","q.18.r","q.10","q.16","q.11"))
 
 res <- rbind(res, d)
 }#есть данные за этот день
 if(nrow(tdt) == 0){n.empty <- n.empty + 1}
 curdate <- curdate + 86400
-
+setTxtProgressBar(pb, as.numeric(diff(c(begdate, curdate))))
 }
 
-Sys.time()
+########################################################################
+
+close(pb)
+tend <- Sys.time()
+tstart
+tend
+diff(c(tstart, tend))
 
 #Q1
 for(i in 1:40){
@@ -532,7 +551,7 @@ cat("q.10 7) ", nrow(q.10))
 q.10 <- res %>% filter(q.10 == 8)
 cat("q.10 8) ", nrow(q.10))
 
-q.12 <- res %>% filter(q.10 in c(1,2,3,4,5,6)) %>% mutate(q.12 = range.max - range.min)
+q.12 <- res %>% filter(q.10 %in% c(1,2,3,4,5,6)) %>% mutate(q.12 = range.max - range.min)
 cat("q.12 ", mean(q.12$q.12))
 
 cat("Q13", sum(res$q.13), "d.","\n")
@@ -543,6 +562,13 @@ cat("Q15c", sum(res$q.15.c), "d.","\n")
 cat("Q17a", sum(res$q.17.a), "d.","\n")
 cat("Q17b", sum(res$q.17.b), "d.","\n")
 cat("Q17c", sum(res$q.17.c), "d.","\n")
+
+#Q18
+cat("q.18 ", mean(res$q.18))
+for(i in 1:40){
+t <- res %>% filter(q.18.r > 5 * i)
+cat(5 * i, " points = ", 100 * nrow(t)/nrow(res), "%\n")
+}
 
 #Q19
 cat("Q19")

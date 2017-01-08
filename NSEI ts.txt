@@ -214,7 +214,9 @@ sum(t$down)
 #abline(fit.l, col="red", lwd=2)
 #abline(fit.h, col="blue", lwd=2)
 
-dt.examined <- dt %>% select(Date, Nifty.50.O, Nifty.50.H, Nifty.50.L, Nifty.50.C) %>% setNames(c("dt","no","nh","nl","nc")) %>% mutate(navg = (nh - nl)/2 + nl) %>% arrange(dt)
+#dt.examined <- dt %>% select(Date, Nifty.50.O, Nifty.50.H, Nifty.50.L, Nifty.50.C) %>% setNames(c("dt","no","nh","nl","nc")) %>% mutate(navg = (nh - nl)/2 + nl) %>% arrange(dt)
+dt.examined <- dt %>% select(Date, OPEN, HIGH, LOW, CLOSE) %>% setNames(c("dt","no","nh","nl","nc")) %>% mutate(no = as.numeric(no), 
+nh = as.numeric(nh), nl = as.numeric(nl), nc = as.numeric(nc), navg = (nh - nl)/2 + nl) %>% arrange(dt)
 
 ###################
 # цикл по всем дням
