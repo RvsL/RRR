@@ -1,0 +1,1451 @@
+data1$diff <- abs(data1$label - data1$predict)
+plot(data1$diff)
+plot(data1$label)
+plot(data1$predict)
+par(mfrow=c(2,2)) #set up the canvas for 2x2 plots#
+spiral <- train_h2o#
+plotC( "DL", h2o.deeplearning(1:2,3,spiral,epochs=1e3))#
+plotC("GBM", h2o.gbm         (1:2,3,spiral))#
+plotC("DRF", h2o.randomForest(1:2,3,spiral))#
+plotC("GLM", h2o.glm         (1:2,3,spiral,family="binomial"))
+plot(h2o.deeplearning(1:2,3,spiral,epochs=1e3))
+plot(h2o.gbm         (1:2,3,spiral))#
+plot(h2o.randomForest(1:2,3,spiral))#
+plot(h2o.glm         (1:2,3,spiral,family="binomial"))
+nnet.model <- h2o.deeplearning(1:2,3,train_h2o,epochs=1e3)#
+#
+#predicted_class <- as.matrix(h2o.predict(nnet.model, train_h2o))#
+predicted_class <- as.matrix(h2o.predict(nnet.model, as.h2o(X)))#
+#
+# plot the resulting classifier#
+hs <- 0.01#
+grid <- as.matrix(expand.grid(seq(x_min, x_max, by = hs), seq(y_min, y_max, by =hs)))#
+colnames(grid) <- c("x","y")#
+Z <- as.matrix(h2o.predict(nnet.model, as.h2o(grid)))#
+ggplot()+#
+  geom_tile(aes(x = grid[,1],y = grid[,2],fill=as.character(Z)), alpha = 0.3, show.legend = F)+ #
+  geom_point(data = data, aes(x=x, y=y, color = as.character(label)), size = 2) + theme_bw(base_size = 15) +#
+  ggtitle('Neural Network Decision Boundary') +#
+  coord_fixed(ratio = 0.8) + #
+  theme(axis.ticks=element_blank(), panel.grid.major = element_blank(), panel.grid.minor = element_blank(), #
+        axis.text=element_blank(), axis.title=element_blank(), legend.position = 'none')
+nnet.model <- h2o.randomForest(1:2,3,train_h2o)#
+#
+#predicted_class <- as.matrix(h2o.predict(nnet.model, train_h2o))#
+predicted_class <- as.matrix(h2o.predict(nnet.model, as.h2o(X)))#
+#
+# plot the resulting classifier#
+hs <- 0.01#
+grid <- as.matrix(expand.grid(seq(x_min, x_max, by = hs), seq(y_min, y_max, by =hs)))#
+colnames(grid) <- c("x","y")#
+Z <- as.matrix(h2o.predict(nnet.model, as.h2o(grid)))#
+ggplot()+#
+  geom_tile(aes(x = grid[,1],y = grid[,2],fill=as.character(Z)), alpha = 0.3, show.legend = F)+ #
+  geom_point(data = data, aes(x=x, y=y, color = as.character(label)), size = 2) + theme_bw(base_size = 15) +#
+  ggtitle('Neural Network Decision Boundary') +#
+  coord_fixed(ratio = 0.8) + #
+  theme(axis.ticks=element_blank(), panel.grid.major = element_blank(), panel.grid.minor = element_blank(), #
+        axis.text=element_blank(), axis.title=element_blank(), legend.position = 'none')
+nnet.model <- h2o.deeplearning(1:2,3,train_h2o,activation=act,hidden=c(100,100),epochs=1e3)#
+#nnet.model <- h2o.randomForest(1:2,3,train_h2o)#
+#
+#predicted_class <- as.matrix(h2o.predict(nnet.model, train_h2o))#
+predicted_class <- as.matrix(h2o.predict(nnet.model, as.h2o(X)))#
+#
+# plot the resulting classifier#
+hs <- 0.01#
+grid <- as.matrix(expand.grid(seq(x_min, x_max, by = hs), seq(y_min, y_max, by =hs)))#
+colnames(grid) <- c("x","y")#
+Z <- as.matrix(h2o.predict(nnet.model, as.h2o(grid)))#
+ggplot()+#
+  geom_tile(aes(x = grid[,1],y = grid[,2],fill=as.character(Z)), alpha = 0.3, show.legend = F)+ #
+  geom_point(data = data, aes(x=x, y=y, color = as.character(label)), size = 2) + theme_bw(base_size = 15) +#
+  ggtitle('Neural Network Decision Boundary') +#
+  coord_fixed(ratio = 0.8) + #
+  theme(axis.ticks=element_blank(), panel.grid.major = element_blank(), panel.grid.minor = element_blank(), #
+        axis.text=element_blank(), axis.title=element_blank(), legend.position = 'none')
+nnet.model <- h2o.deeplearning(1:2,3,train_h2o,activation=act,hidden=c(100,100,100),epochs=1e3)#
+#nnet.model <- h2o.randomForest(1:2,3,train_h2o)#
+#
+#predicted_class <- as.matrix(h2o.predict(nnet.model, train_h2o))#
+predicted_class <- as.matrix(h2o.predict(nnet.model, as.h2o(X)))#
+#
+# plot the resulting classifier#
+hs <- 0.01#
+grid <- as.matrix(expand.grid(seq(x_min, x_max, by = hs), seq(y_min, y_max, by =hs)))#
+colnames(grid) <- c("x","y")#
+Z <- as.matrix(h2o.predict(nnet.model, as.h2o(grid)))#
+ggplot()+#
+  geom_tile(aes(x = grid[,1],y = grid[,2],fill=as.character(Z)), alpha = 0.3, show.legend = F)+ #
+  geom_point(data = data, aes(x=x, y=y, color = as.character(label)), size = 2) + theme_bw(base_size = 15) +#
+  ggtitle('Neural Network Decision Boundary') +#
+  coord_fixed(ratio = 0.8) + #
+  theme(axis.ticks=element_blank(), panel.grid.major = element_blank(), panel.grid.minor = element_blank(), #
+        axis.text=element_blank(), axis.title=element_blank(), legend.position = 'none')
+nnet.model <- h2o.deeplearning(1:2,3,train_h2o,activation=act,hidden=c(100,100,100),epochs=1000)#
+#nnet.model <- h2o.randomForest(1:2,3,train_h2o)#
+#
+#predicted_class <- as.matrix(h2o.predict(nnet.model, train_h2o))#
+predicted_class <- as.matrix(h2o.predict(nnet.model, as.h2o(X)))#
+#
+# plot the resulting classifier#
+hs <- 0.01#
+grid <- as.matrix(expand.grid(seq(x_min, x_max, by = hs), seq(y_min, y_max, by =hs)))#
+colnames(grid) <- c("x","y")#
+Z <- as.matrix(h2o.predict(nnet.model, as.h2o(grid)))#
+ggplot()+#
+  geom_tile(aes(x = grid[,1],y = grid[,2],fill=as.character(Z)), alpha = 0.3, show.legend = F)+ #
+  geom_point(data = data, aes(x=x, y=y, color = as.character(label)), size = 2) + theme_bw(base_size = 15) +#
+  ggtitle('Neural Network Decision Boundary') +#
+  coord_fixed(ratio = 0.8) + #
+  theme(axis.ticks=element_blank(), panel.grid.major = element_blank(), panel.grid.minor = element_blank(), #
+        axis.text=element_blank(), axis.title=element_blank(), legend.position = 'none')
+nnet.model <- h2o.deeplearning(1:2,3,train_h2o,hidden=c(100,100,100),epochs=1000)#
+#nnet.model <- h2o.randomForest(1:2,3,train_h2o)#
+#
+#predicted_class <- as.matrix(h2o.predict(nnet.model, train_h2o))#
+predicted_class <- as.matrix(h2o.predict(nnet.model, as.h2o(X)))#
+#
+# plot the resulting classifier#
+hs <- 0.01#
+grid <- as.matrix(expand.grid(seq(x_min, x_max, by = hs), seq(y_min, y_max, by =hs)))#
+colnames(grid) <- c("x","y")#
+Z <- as.matrix(h2o.predict(nnet.model, as.h2o(grid)))#
+ggplot()+#
+  geom_tile(aes(x = grid[,1],y = grid[,2],fill=as.character(Z)), alpha = 0.3, show.legend = F)+ #
+  geom_point(data = data, aes(x=x, y=y, color = as.character(label)), size = 2) + theme_bw(base_size = 15) +#
+  ggtitle('Neural Network Decision Boundary') +#
+  coord_fixed(ratio = 0.8) + #
+  theme(axis.ticks=element_blank(), panel.grid.major = element_blank(), panel.grid.minor = element_blank(), #
+        axis.text=element_blank(), axis.title=element_blank(), legend.position = 'none')
+nnet.model <- h2o.deeplearning(1:2,3,train_h2o,hidden=c(50,50,50),epochs=1000)#
+#nnet.model <- h2o.randomForest(1:2,3,train_h2o)#
+#
+#predicted_class <- as.matrix(h2o.predict(nnet.model, train_h2o))#
+predicted_class <- as.matrix(h2o.predict(nnet.model, as.h2o(X)))#
+#
+# plot the resulting classifier#
+hs <- 0.01#
+grid <- as.matrix(expand.grid(seq(x_min, x_max, by = hs), seq(y_min, y_max, by =hs)))#
+colnames(grid) <- c("x","y")#
+Z <- as.matrix(h2o.predict(nnet.model, as.h2o(grid)))#
+ggplot()+#
+  geom_tile(aes(x = grid[,1],y = grid[,2],fill=as.character(Z)), alpha = 0.3, show.legend = F)+ #
+  geom_point(data = data, aes(x=x, y=y, color = as.character(label)), size = 2) + theme_bw(base_size = 15) +#
+  ggtitle('Neural Network Decision Boundary') +#
+  coord_fixed(ratio = 0.8) + #
+  theme(axis.ticks=element_blank(), panel.grid.major = element_blank(), panel.grid.minor = element_blank(), #
+        axis.text=element_blank(), axis.title=element_blank(), legend.position = 'none')
+nnet.model <- h2o.deeplearning(1:2,3,train_h2o,hidden=c(50,50,50),epochs=1e3)#
+#nnet.model <- h2o.randomForest(1:2,3,train_h2o)#
+#
+#predicted_class <- as.matrix(h2o.predict(nnet.model, train_h2o))#
+predicted_class <- as.matrix(h2o.predict(nnet.model, as.h2o(X)))#
+#
+# plot the resulting classifier#
+hs <- 0.01#
+grid <- as.matrix(expand.grid(seq(x_min, x_max, by = hs), seq(y_min, y_max, by =hs)))#
+colnames(grid) <- c("x","y")#
+Z <- as.matrix(h2o.predict(nnet.model, as.h2o(grid)))#
+ggplot()+#
+  geom_tile(aes(x = grid[,1],y = grid[,2],fill=as.character(Z)), alpha = 0.3, show.legend = F)+ #
+  geom_point(data = data, aes(x=x, y=y, color = as.character(label)), size = 2) + theme_bw(base_size = 15) +#
+  ggtitle('Neural Network Decision Boundary') +#
+  coord_fixed(ratio = 0.8) + #
+  theme(axis.ticks=element_blank(), panel.grid.major = element_blank(), panel.grid.minor = element_blank(), #
+        axis.text=element_blank(), axis.title=element_blank(), legend.position = 'none')
+nnet.model <- h2o.deeplearning(1:2,3,train_h2o,activate=act,hidden=c(50,50,50),epochs=1e3)#
+#nnet.model <- h2o.randomForest(1:2,3,train_h2o)#
+#
+#predicted_class <- as.matrix(h2o.predict(nnet.model, train_h2o))#
+predicted_class <- as.matrix(h2o.predict(nnet.model, as.h2o(X)))#
+#
+# plot the resulting classifier#
+hs <- 0.01#
+grid <- as.matrix(expand.grid(seq(x_min, x_max, by = hs), seq(y_min, y_max, by =hs)))#
+colnames(grid) <- c("x","y")#
+Z <- as.matrix(h2o.predict(nnet.model, as.h2o(grid)))#
+ggplot()+#
+  geom_tile(aes(x = grid[,1],y = grid[,2],fill=as.character(Z)), alpha = 0.3, show.legend = F)+ #
+  geom_point(data = data, aes(x=x, y=y, color = as.character(label)), size = 2) + theme_bw(base_size = 15) +#
+  ggtitle('Neural Network Decision Boundary') +#
+  coord_fixed(ratio = 0.8) + #
+  theme(axis.ticks=element_blank(), panel.grid.major = element_blank(), panel.grid.minor = element_blank(), #
+        axis.text=element_blank(), axis.title=element_blank(), legend.position = 'none')
+plot(predicted_class)
+nnet.model <- h2o.deeplearning(1:2,3,train_h2o,activate=act,hidden=c(100,100,100,100,100,100,100),epochs=1e6)#
+#nnet.model <- h2o.randomForest(1:2,3,train_h2o)#
+#
+#predicted_class <- as.matrix(h2o.predict(nnet.model, train_h2o))#
+predicted_class <- as.matrix(h2o.predict(nnet.model, as.h2o(X)))#
+#
+# plot the resulting classifier#
+hs <- 0.01#
+grid <- as.matrix(expand.grid(seq(x_min, x_max, by = hs), seq(y_min, y_max, by =hs)))#
+colnames(grid) <- c("x","y")#
+Z <- as.matrix(h2o.predict(nnet.model, as.h2o(grid)))#
+ggplot()+#
+  geom_tile(aes(x = grid[,1],y = grid[,2],fill=as.character(Z)), alpha = 0.3, show.legend = F)+ #
+  geom_point(data = data, aes(x=x, y=y, color = as.character(label)), size = 2) + theme_bw(base_size = 15) +#
+  ggtitle('Neural Network Decision Boundary') +#
+  coord_fixed(ratio = 0.8) + #
+  theme(axis.ticks=element_blank(), panel.grid.major = element_blank(), panel.grid.minor = element_blank(), #
+        axis.text=element_blank(), axis.title=element_blank(), legend.position = 'none')
+round(0.135)
+ggplot()+#
+  geom_tile(aes(x = grid[,1],y = grid[,2],fill=as.character(Z)), alpha = 0.3, show.legend = F)+ #
+  geom_point(data = data, aes(x=x, y=y, color = as.character(round(label))), size = 2) + theme_bw(base_size = 15) +#
+  ggtitle('Neural Network Decision Boundary') +#
+  coord_fixed(ratio = 0.8) + #
+  theme(axis.ticks=element_blank(), panel.grid.major = element_blank(), panel.grid.minor = element_blank(), #
+        axis.text=element_blank(), axis.title=element_blank(), legend.position = 'none')
+ggplot()+#
+  geom_tile(aes(x = grid[,1],y = grid[,2],fill=as.character(round(Z))), alpha = 0.3, show.legend = F)+ #
+  geom_point(data = data, aes(x=x, y=y, color = as.character(label)), size = 2) + theme_bw(base_size = 15) +#
+  ggtitle('Neural Network Decision Boundary') +#
+  coord_fixed(ratio = 0.8) + #
+  theme(axis.ticks=element_blank(), panel.grid.major = element_blank(), panel.grid.minor = element_blank(), #
+        axis.text=element_blank(), axis.title=element_blank(), legend.position = 'none')
+nnet.model <- h2o.deeplearning(1:2,3,train_h2o,epochs=1e3)#
+#nnet.model <- h2o.deeplearning(1:2,3,train_h2o,activate=act,hidden=c(100,100,100,100,100,100,100),epochs=1e6)#
+#nnet.model <- h2o.randomForest(1:2,3,train_h2o)#
+#
+#predicted_class <- as.matrix(h2o.predict(nnet.model, train_h2o))#
+predicted_class <- as.matrix(h2o.predict(nnet.model, as.h2o(X)))#
+#
+# plot the resulting classifier#
+hs <- 0.01#
+grid <- as.matrix(expand.grid(seq(x_min, x_max, by = hs), seq(y_min, y_max, by =hs)))#
+colnames(grid) <- c("x","y")#
+Z <- as.matrix(h2o.predict(nnet.model, as.h2o(grid)))#
+ggplot()+#
+  geom_tile(aes(x = grid[,1],y = grid[,2],fill=as.character(round(Z))), alpha = 0.3, show.legend = F)+ #
+  geom_point(data = data, aes(x=x, y=y, color = as.character(label)), size = 2) + theme_bw(base_size = 15) +#
+  ggtitle('Neural Network Decision Boundary') +#
+  coord_fixed(ratio = 0.8) + #
+  theme(axis.ticks=element_blank(), panel.grid.major = element_blank(), panel.grid.minor = element_blank(), #
+        axis.text=element_blank(), axis.title=element_blank(), legend.position = 'none')
+plot(predicted_class)
+nnet.model1 <- h2o.deeplearning(1:2,3,train_h2o,activate=act,hidden=c(100,100,100,100,100,100,100),epochs=1e6)#
+nnet.model2 <- h2o.randomForest(1:2,3,train_h2o)#
+#
+#predicted_class <- as.matrix(h2o.predict(nnet.model, as.h2o(X)))#
+predicted_class1 <- as.matrix(h2o.predict(nnet.model1, as.h2o(X)))#
+predicted_class2 <- as.matrix(h2o.predict(nnet.model2, as.h2o(X)))#
+#
+#plot(predicted_class)#
+plot(predicted_class1)#
+plot(predicted_class2)
+nnet.model1 <- h2o.deeplearning(1:2,3,train_h2o,activation=act,hidden=c(100,100,100,100,100,100,100),epochs=1e6)
+predicted_class1 <- as.matrix(h2o.predict(nnet.model1, as.h2o(X)))
+plot(predicted_class1)
+nnet.model1 <- h2o.deeplearning(1:2,3,train_h2o,activation="TanhWithDropout",hidden=c(100,100,100,100,100,100,100),epochs=1e6)
+nnet.model1 <- h2o.deeplearning(1:2,3,train_h2o,hidden=c(100,100,100,100,100,100,100),epochs=1e6)
+predicted_class1 <- as.matrix(h2o.predict(nnet.model1, as.h2o(X)))
+plot(predicted_class1)
+hs <- 0.01#
+grid <- as.matrix(expand.grid(seq(x_min, x_max, by = hs), seq(y_min, y_max, by =hs)))#
+colnames(grid) <- c("x","y")#
+Z <- as.matrix(h2o.predict(nnet.model1, as.h2o(grid)))#
+ggplot()+#
+  geom_tile(aes(x = grid[,1],y = grid[,2],fill=as.character(round(Z))), alpha = 0.3, show.legend = F)+ #
+  geom_point(data = data, aes(x=x, y=y, color = as.character(label)), size = 2) + theme_bw(base_size = 15) +#
+  ggtitle('Neural Network Decision Boundary') +#
+  coord_fixed(ratio = 0.8) + #
+  theme(axis.ticks=element_blank(), panel.grid.major = element_blank(), panel.grid.minor = element_blank(), #
+        axis.text=element_blank(), axis.title=element_blank(), legend.position = 'none')
+train <- h2o.importFile('/Users/RvsL/RRR/h2o/train.csv', header=TRUE)#
+test <- h2o.importFile('/Users/RvsL/RRR/h2o/test.csv', header=TRUE)
+head(test)
+h2o.shutdown(prompt=FALSE)
+h2o.init(-1)
+h2o.init()
+h2o.shutdown(prompt=FALSE)
+h2o.init(nthreads = -1)
+h2o.shutdown(prompt=FALSE)
+h2o.init(nthreads = -1)
+train <- h2o.importFile('/Users/RvsL/RRR/h2o/train.csv', header=TRUE)#
+test <- h2o.importFile('/Users/RvsL/RRR/h2o/test.csv', header=TRUE)
+train.x <- train[,-1]#
+train.y <- train[,1]
+train.x <- t(train.x/255)#
+test <- t(test/255)
+table(train.y)
+head(train.x)
+h2o.shutdown(prompt=FALSE)
+h2o.init(nthreads = -1)
+train <- read.csv('/Users/RvsL/RRR/h2o/train.csv', header=TRUE)#
+test <- read.csv('/Users/RvsL/RRR/h2o/test.csv', header=TRUE)#
+train <- data.matrix(train)#
+test <- data.matrix(test)#
+#
+train.x <- train[,-1]#
+train.y <- train[,1]#
+#
+train.x <- t(train.x/255)#
+test <- t(test/255)#
+table(train.y)
+dim(train.x)
+dim(train.y)
+dim(train)
+head(test)
+str(test)
+plot(test)
+nnet.model2 <- h2o.randomForest(2:785,1,as.h2o(train))
+h2o.shutdown(prompt=FALSE)
+train <- read.csv('/Users/RvsL/RRR/h2o/train.csv', header=TRUE)#
+test <- read.csv('/Users/RvsL/RRR/h2o/test.csv', header=TRUE)#
+train <- data.matrix(train)#
+test <- data.matrix(test)#
+#
+train.x <- train[,-1]#
+train.y <- train[,1]#
+#
+train.x <- t(train.x/255)#
+test <- t(test/255)#
+table(train.y)#
+#
+train.array <- train.x#
+dim(train.array) <- c(28, 28, 1, ncol(train.x))#
+test.array <- test#
+dim(test.array) <- c(28, 28, 1, ncol(test))
+str(test.array)
+head(test.array)
+head(train.array)
+train_h2o <- as.h2o(train)
+h2o.init(nthreads = -1)
+train_h2o <- as.h2o(train)
+nnet.model <- h2o.deeplearning(2:785,1,train_h2o,epochs=1e3)
+str(mnet.model)
+install.packages('imager',repos='http://cran.us.r-project.org')#
+library(imager)#
+#
+im <- load.image("/Users/RvsL/Pictures/95_main.jpg")#
+plot(im)
+preproc.image <-function(im, mean.image) {#
+  # crop the image#
+  shape <- dim(im)#
+  short.edge <- min(shape[1:2])#
+  yy <- floor((shape[1] - short.edge) / 2) + 1#
+  yend <- yy + short.edge - 1#
+  xx <- floor((shape[2] - short.edge) / 2) + 1#
+  xend <- xx + short.edge - 1#
+  croped <- im[yy:yend, xx:xend,,]#
+  # resize to 224 x 224, needed by input of the model.#
+  resized <- resize(croped, 224, 224)#
+  # convert to array (x, y, channel)#
+  arr <- as.array(resized)#
+  dim(arr) = c(224, 224, 3)#
+  # substract the mean#
+  normed <- arr - mean.img#
+  # Reshape to format needed by mxnet (width, height, channel, num)#
+  dim(normed) <- c(224, 224, 3, 1)#
+  return(normed)#
+}
+normed <- preproc.image(im, mean.img)
+install.packages("drat", repos="https://cran.rstudio.com")#
+drat:::addRepo("dmlc")#
+install.packages("mxnet")
+require(mlbench)#
+## Loading required package: mlbench#
+require(mxnet)
+library(mxnet)
+h2o.shutdown(prompt=FALSE)
+head(res)
+tdt.range
+nrow(tdt)
+tdt[nrow(tdt),]
+tdt[nrow(tdt),]$navg
+tdt.range[2]
+tdt.range[2] == tdt[nrow(tdt),]$navg
+tdt.end.val
+tdt.hh
+tdt.start.val
+tdt.range[1]
+head(tdt.navg)
+head(tdt$navg)
+source("/Users/RvsL/RRR/NSEI4.r",echo=TRUE)
+cat("q4.1: ","mean = ",mean(res$p2.q4.1),"sd = ",sd(res$p2.q4.1),"\n")#
+cat("q4.2: ","mean = ",mean(res$p2.q4.2),"sd = ",sd(res$p2.q4.2),"\n")#
+cat("q4.3: ","mean = ",mean(res$p2.q4.3),"sd = ",sd(res$p2.q4.3),"\n")#
+cat("q4.4: ","mean = ",mean(res$p2.q4.4),"sd = ",sd(res$p2.q4.4),"\n")#
+cat("q4.5: ","mean = ",mean(res$p2.q4.5),"sd = ",sd(res$p2.q4.5),"\n")#
+cat("q4.6: ","mean = ",mean(res$p2.q4.6),"sd = ",sd(res$p2.q4.6),"\n")
+cat("q5.1: ","mean = ",mean(res$p2.q5.1),"sd = ",sd(res$p2.q5.1),"\n")#
+cat("q5.2: ","mean = ",mean(res$p2.q5.2),"sd = ",sd(res$p2.q5.2),"\n")#
+cat("q5.3: ","mean = ",mean(res$p2.q5.3),"sd = ",sd(res$p2.q5.3),"\n")#
+cat("q5.4: ","mean = ",mean(res$p2.q5.4),"sd = ",sd(res$p2.q5.4),"\n")#
+cat("q5.5: ","mean = ",mean(res$p2.q5.5),"sd = ",sd(res$p2.q5.5),"\n")#
+cat("q5.6: ","mean = ",mean(res$p2.q5.6),"sd = ",sd(res$p2.q5.6),"\n")
+source("/Users/RvsL/RRR/NSEI4.r")
+source("/Users/RvsL/RRR/NSEI4.r",echo=TRUE)
+source("/Users/RvsL/RRR/NSEI4.r")
+head(res)
+res.sandeep <- read.csv('/Users/RvsL/Google Диск/2 - рабочее/17 - R/niftydayly20170106.csv', header=T, stringsAsFactors=F)
+res.sandeep <- read.csv('/Users/RvsL/Google Диск/2 - рабочее/17 - R/niftydayly20170106.csv', header=T, stringsAsFactors=F, sep = ';')
+res.sandeep <- read.csv('/Users/RvsL/Google Диск/2 - рабочее/17 - R/niftydayly20170106.csv', header=T, stringsAsFactors=F, sep = ";")
+head(res.sandeep)
+summary(res.sandeep$X)
+summary(res.sandeep$Open)
+res.sandeep$date <- as.POSIXct(res.sandeep$Date)
+res.sandeep$date <- strprime(res.sandeep$Date, "%d.%m.%Y")
+res.sandeep$date <- strptime(res.sandeep$Date, "%d.%m.%Y")
+res.sandeep$date <- as.POSIXct(res.sandeep$date)
+res.sandeep[,2:7] <- as.numeric(res.sandeep[,2:7])
+res.sandeep <- res.sandeep %>% select(date,Open,High,Low,Close,H.L) %>% setNames(date,Open,High,Low,Close, diff)%>% mutate(Open = as.numeric(Open),High = as.numeric(High),Low = as.numeric(Low),Close = as.numeric(Close), diff = as.numeric(diff))
+res.sandeep <- res.sandeep %>% select(date,Open,High,Low,Close,H.L) %>% setNames(c("date","Open","High","Low","Close", "diff))%>% mutate(Open = as.numeric(Open),High = as.numeric(High),Low = as.numeric(Low),Close = as.numeric(Close), diff = as.numeric(diff))
+""
+))
+)))Hjk,
+fuhyjkgfjhk
+fjhk
+fhjk
+hfjkg@
+""
+res.sandeep <- res.sandeep %>% select(date,Open,High,Low,Close,H.L) %>% setNames(c("date","Open","High","Low","Close","diff"))%>% mutate(Open = as.numeric(Open),High = as.numeric(High),Low = as.numeric(Low),Close = as.numeric(Close), diff = as.numeric(diff))
+res.sandeep <- read.csv('/Users/RvsL/Google Диск/2 - рабочее/17 - R/niftydayly20170106.csv', header=T, stringsAsFactors=F, sep = ";")
+res.sandeep$date <- strprime(res.sandeep$Date, "%d.%m.%Y")
+res.sandeep$date <- strptime(res.sandeep$Date, "%d.%m.%Y")
+res.sandeep$date <- as.POSIXct(res.sandeep$Date)
+res.sandeep$date <- as.POSIXct(res.sandeep$date)
+res.sandeep <- res.sandeep %>% select(date,Open,High,Low,Close) %>% setNames(c("date","Open","High","Low","Close"))%>% mutate(Open = as.numeric(Open),High = as.numeric(High),Low = as.numeric(Low),Close = as.numeric(Close))
+str(res[1,1])
+str(res$date[1])
+names(res)
+str(res$day[1])
+str(res.sandeep$date[1])
+res.sandeep <- read.csv('/Users/RvsL/Google Диск/2 - рабочее/17 - R/niftydayly20170106.csv', header=T, stringsAsFactors=F, sep = ";")#
+res.sandeep$date <- strprime(res.sandeep$Date, "%d.%m.%Y")#
+res.sandeep$date <- as.POSIXct(res.sandeep$date)#
+res.sandeep <- res.sandeep %>% select(date,Open,High,Low,Close) %>% setNames(c("date","Open","High","Low","Close"))%>% mutate(Open = as.numeric(Open),High = as.numeric(High),Low = as.numeric(Low),Close = as.numeric(Close))#
+res.sandeep <- res.sandeep %>% mutate(diff = High - Low)#
+#
+res.join <- res %>% select(day, range.min, range.max, start.val, end.val)#
+#
+res.join <- merge(res.join, res.sandeep, by.x = day, by.y = date)
+res.sandeep <- read.csv('/Users/RvsL/Google Диск/2 - рабочее/17 - R/niftydayly20170106.csv', header=T, stringsAsFactors=F, sep = ";")#
+res.sandeep$date <- strptime(res.sandeep$Date, "%d.%m.%Y")#
+res.sandeep$date <- as.POSIXct(res.sandeep$date)#
+res.sandeep <- res.sandeep %>% select(date,Open,High,Low,Close) %>% setNames(c("date","Open","High","Low","Close"))%>% mutate(Open = as.numeric(Open),High = as.numeric(High),Low = as.numeric(Low),Close = as.numeric(Close))#
+res.sandeep <- res.sandeep %>% mutate(diff = High - Low)#
+#
+res.join <- res %>% select(day, range.min, range.max, start.val, end.val)#
+#
+res.join <- merge(res.join, res.sandeep, by.x = day, by.y = date)
+head(res.join)
+source("/Users/RvsL/RRR/NSEI4.r")
+res.sandeep <- read.csv('/Users/RvsL/Google Диск/2 - рабочее/17 - R/niftydayly20170106.csv', header=T, stringsAsFactors=F, sep = ";")#
+res.sandeep$date <- strptime(res.sandeep$Date, "%d.%m.%Y")#
+res.sandeep$date <- as.POSIXct(res.sandeep$date)#
+res.sandeep <- res.sandeep %>% select(date,Open,High,Low,Close) %>% setNames(c("date","Open","High","Low","Close"))%>% mutate(Open = as.numeric(Open),High = as.numeric(High),Low = as.numeric(Low),Close = as.numeric(Close))#
+res.sandeep <- res.sandeep %>% mutate(diff = High - Low)#
+#
+res.join <- res %>% select(day, range.min, range.max, start.val, end.val)#
+#
+res.join <- merge(res.join, res.sandeep, by.x = day, by.y = date)
+head(res.join)
+head(res.sandeep)
+res.join <- res %>% select(day, range.min, range.max, start.val, end.val)
+res.join <- merge(res.join, res.sandeep, by.x = day, by.y = date, all.y = T)
+#install.packages('imager',repos='http://cran.us.r-project.org')#
+library(imager)#
+#
+im <- load.image("/Users/RvsL/Pictures/95_main.jpg")#
+plot(im)#
+#
+preproc.image <-function(im, mean.image) {#
+  # crop the image#
+  shape <- dim(im)#
+  short.edge <- min(shape[1:2])#
+  yy <- floor((shape[1] - short.edge) / 2) + 1#
+  yend <- yy + short.edge - 1#
+  xx <- floor((shape[2] - short.edge) / 2) + 1#
+  xend <- xx + short.edge - 1#
+  croped <- im[yy:yend, xx:xend,,]#
+  # resize to 224 x 224, needed by input of the model.#
+  resized <- resize(croped, 224, 224)#
+  # convert to array (x, y, channel)#
+  arr <- as.array(resized)#
+  dim(arr) = c(224, 224, 3)#
+  # substract the mean#
+  normed <- arr - mean.img#
+  # Reshape to format needed by mxnet (width, height, channel, num)#
+  dim(normed) <- c(224, 224, 3, 1)#
+  return(normed)#
+}
+im <- load.image("/Users/RvsL/Pictures/95_main.jpg")
+im <- load.image("/Users/RvsL/python/facialLidogenerator/badFaces/b1152060.jpg")
+plot(im)
+im.1 <- preproc.image(im)
+shape <- dim(im)#
+  short.edge <- min(shape[1:2])#
+  yy <- floor((shape[1] - short.edge) / 2) + 1#
+  yend <- yy + short.edge - 1#
+  xx <- floor((shape[2] - short.edge) / 2) + 1#
+  xend <- xx + short.edge - 1
+croped <- im[yy:yend, xx:xend,,]
+plot(cropped)
+plot(croped)
+class(croped)
+resized <- resize(croped, 224, 224)
+xx
+yy
+yend
+xend
+shape
+require(grDevices) # for colours#
+x <- y <- seq(-4*pi, 4*pi, len = 27)#
+r <- sqrt(outer(x^2, y^2, "+"))#
+image(z = z <- cos(r^2)*exp(-r/6), col  = gray((0:32)/32))#
+image(z, axes = FALSE, main = "Math can be beautiful ...",#
+      xlab = expression(cos(r^2) * e^{-r/6}))#
+contour(z, add = TRUE, drawlabels = FALSE)#
+#
+# Volcano data visualized as matrix. Need to transpose and flip#
+# matrix horizontally.#
+image(t(volcano)[ncol(volcano):1,])#
+#
+# A prettier display of the volcano#
+x <- 10*(1:nrow(volcano))#
+y <- 10*(1:ncol(volcano))#
+image(x, y, volcano, col = terrain.colors(100), axes = FALSE)#
+contour(x, y, volcano, levels = seq(90, 200, by = 5),#
+        add = TRUE, col = "peru")#
+axis(1, at = seq(100, 800, by = 100))#
+axis(2, at = seq(100, 600, by = 100))#
+box()#
+title(main = "Maunga Whau Volcano", font.main = 4)
+install.packages('magick',repos='http://cran.us.r-project.org')
+library(magick)
+im <- image_read("/Users/RvsL/Pictures/95_main.jpg")
+image_info(im)
+image_display(im)
+print(im)
+xend
+croped <- image_crop(image, paste0(as.character(xend),"x",as.character(yend),"0")
+)
+croped <- image_crop(image, paste0(as.character(xend),"x",as.character(yend),"0"))
+croped <- image_crop(im, paste0(as.character(xend),"x",as.character(yend),"0"))
+plot(croped)
+xend
+yend
+croped <- image_crop(im, "57x57")
+plot(croped)
+croped <- image_crop(im, "250x250")
+plot(croped)
+im <- load.image("/Users/RvsL/python/facialLidogenerator/badFaces/b1152060.jpg")
+croped <- image_crop(im, "250x250")
+plot(croped)
+plot(im)
+im <- image_read("/Users/RvsL/python/facialLidogenerator/badFaces/b1152060.jpg")
+croped <- image_crop(im, "250x250")
+plot(im)
+plot(croped)
+image_info
+image_info(im)
+image_info(croped)
+dim(im)
+install.packages('EBImage',repos='http://cran.us.r-project.org')
+install.packages('EBImage',repos='http://cran.us.r-project.org')
+install.packages('EBImage')
+im <- load.image("/Users/RvsL/python/facialLidogenerator/badFaces/b1152060.jpg")
+fin <- resize(im, size_x = 28, size_y = 28)
+plot(fin)
+# Set wd where images are located#
+setwd("/Users/RvsL/python/facialLidogenerator/goodFaces")#
+# Set d where to save images#
+save_in <- "/Users/RvsL/python/facialLidogenerator/goodFaces/trainGood"#
+# Load images names#
+images <- list.files()#
+# Set width#
+w <- 28#
+# Set height#
+h <- 28#
+#
+# Main loop resize images and set them to greyscale#
+for(i in 1:length(images))#
+{#
+    # Try-catch is necessary since some images#
+    # may not work.#
+    result <- tryCatch({#
+    # Image name#
+    imgname <- images[i]#
+    # Read image#
+    img <- readImage(imgname)#
+    # Resize image 28x28#
+    img_resized <- resize(img, w = w, h = h)#
+    # Set to grayscale#
+    grayimg <- channel(img_resized,"gray")#
+    # Path to file#
+    path <- paste(save_in, imgname, sep = "")#
+    # Save image#
+    writeImage(grayimg, path, quality = 70)#
+    # Print status#
+    print(paste("Done",i,sep = " "))},#
+    # Error function#
+    error = function(e){print(e)})#
+}
+# Set wd where images are located#
+setwd("/Users/RvsL/python/facialLidogenerator/goodFaces")#
+# Set d where to save images#
+save_in <- "/Users/RvsL/python/facialLidogenerator/goodFaces/trainGood"#
+# Load images names#
+images <- list.files()#
+# Set width#
+w <- 28#
+# Set height#
+h <- 28#
+#
+# Main loop resize images and set them to greyscale#
+for(i in 1:length(images))#
+{#
+    # Try-catch is necessary since some images#
+    # may not work.#
+    result <- tryCatch({#
+    # Image name#
+    imgname <- images[i]#
+    # Read image#
+    img <- load.image(imgname)#
+    # Resize image 28x28#
+    img_resized <- resize(img, w = w, h = h)#
+    # Set to grayscale#
+    grayimg <- channel(img_resized,"gray")#
+    # Path to file#
+    path <- paste(save_in, imgname, sep = "")#
+    # Save image#
+    writeImage(grayimg, path, quality = 70)#
+    # Print status#
+    print(paste("Done",i,sep = " "))},#
+    # Error function#
+    error = function(e){print(e)})#
+}
+# Set wd where images are located#
+setwd("/Users/RvsL/python/facialLidogenerator/goodFaces")#
+# Set d where to save images#
+save_in <- "/Users/RvsL/python/facialLidogenerator/goodFaces/trainGood"#
+# Load images names#
+images <- list.files()#
+# Set width#
+w <- 28#
+# Set height#
+h <- 28#
+#
+# Main loop resize images and set them to greyscale#
+for(i in 1:length(images))#
+{#
+    # Try-catch is necessary since some images#
+    # may not work.#
+    result <- tryCatch({#
+    # Image name#
+    imgname <- images[i]#
+    # Read image#
+    img <- load.image(imgname)#
+    # Resize image 28x28#
+    img_resized <- resize(img, size_x = w, size_y = h)#
+    # Set to grayscale#
+    grayimg <- channel(img_resized,"gray")#
+    # Path to file#
+    path <- paste(save_in, imgname, sep = "")#
+    # Save image#
+    writeImage(grayimg, path, quality = 70)#
+    # Print status#
+    print(paste("Done",i,sep = " "))},#
+    # Error function#
+    error = function(e){print(e)})#
+}
+im <- load.image("/Users/RvsL/python/facialLidogenerator/badFaces/b1152060.jpg")
+img <- load.image("/Users/RvsL/python/facialLidogenerator/badFaces/b1152060.jpg")
+img_resized <- resize(img, size_x = w, size_y = h)
+grayimg <- channel(img_resized,"gray")
+heatmap(img)
+source("https://bioconductor.org/biocLite.R")#
+biocLite("EBImage")
+require(EBImage)#
+#
+# Set wd where images are located#
+setwd("/Users/RvsL/python/facialLidogenerator/goodFaces")#
+# Set d where to save images#
+save_in <- "/Users/RvsL/python/facialLidogenerator/goodFaces/trainGood"#
+# Load images names#
+images <- list.files()#
+# Set width#
+w <- 28#
+# Set height#
+h <- 28#
+#
+# Main loop resize images and set them to greyscale#
+for(i in 1:length(images))#
+{#
+    # Try-catch is necessary since some images#
+    # may not work.#
+    result <- tryCatch({#
+    # Image name#
+    imgname <- images[i]#
+    # Read image#
+    img <- readImage(imgname)#
+    # Resize image 28x28#
+    img_resized <- resize(img, w = w, h = h)#
+    # Set to grayscale#
+    grayimg <- channel(img_resized,"gray")#
+    # Path to file#
+    path <- paste(save_in, imgname, sep = "")#
+    # Save image#
+    writeImage(grayimg, path, quality = 70)#
+    # Print status#
+    print(paste("Done",i,sep = " "))},#
+    # Error function#
+    error = function(e){print(e)})#
+}
+require(EBImage)#
+#
+# Set wd where images are located#
+setwd("/Users/RvsL/python/facialLidogenerator/badFaces/")#
+# Set d where to save images#
+save_in <- "/Users/RvsL/python/facialLidogenerator/goodFaces/trainBad/"#
+# Load images names#
+images <- list.files()#
+# Set width#
+w <- 28#
+# Set height#
+h <- 28#
+#
+# Main loop resize images and set them to greyscale#
+for(i in 1:length(images))#
+{#
+    # Try-catch is necessary since some images#
+    # may not work.#
+    result <- tryCatch({#
+    # Image name#
+    imgname <- images[i]#
+    # Read image#
+    img <- readImage(imgname)#
+    # Resize image 28x28#
+    img_resized <- resize(img, w = w, h = h)#
+    # Set to grayscale#
+    grayimg <- channel(img_resized,"gray")#
+    # Path to file#
+    path <- paste(save_in, imgname, sep = "")#
+    # Save image#
+    writeImage(grayimg, path, quality = 70)#
+    # Print status#
+    print(paste("Done",i,sep = " "))},#
+    # Error function#
+    error = function(e){print(e)})#
+}
+# Set wd where images are located#
+setwd("/Users/RvsL/python/facialLidogenerator/badFaces")#
+# Set d where to save images#
+save_in <- "/Users/RvsL/python/facialLidogenerator/goodFaces/trainBad/"#
+# Load images names#
+images <- list.files()#
+# Set width#
+w <- 28#
+# Set height#
+h <- 28#
+#
+# Main loop resize images and set them to greyscale#
+for(i in 1:length(images))#
+{#
+    # Try-catch is necessary since some images#
+    # may not work.#
+    result <- tryCatch({#
+    # Image name#
+    imgname <- images[i]#
+    # Read image#
+    img <- readImage(imgname)#
+    # Resize image 28x28#
+    img_resized <- resize(img, w = w, h = h)#
+    # Set to grayscale#
+    grayimg <- channel(img_resized,"gray")#
+    # Path to file#
+    path <- paste(save_in, imgname, sep = "")#
+    # Save image#
+    writeImage(grayimg, path, quality = 70)#
+    # Print status#
+    print(paste("Done",i,sep = " "))},#
+    # Error function#
+    error = function(e){print(e)})#
+}
+# Set wd where images are located#
+setwd("/Users/RvsL/python/facialLidogenerator/badFaces")#
+# Set d where to save images#
+save_in <- "/Users/RvsL/python/facialLidogenerator/badFaces/trainBad/"#
+# Load images names#
+images <- list.files()#
+# Set width#
+w <- 28#
+# Set height#
+h <- 28#
+#
+# Main loop resize images and set them to greyscale#
+for(i in 1:length(images))#
+{#
+    # Try-catch is necessary since some images#
+    # may not work.#
+    result <- tryCatch({#
+    # Image name#
+    imgname <- images[i]#
+    # Read image#
+    img <- readImage(imgname)#
+    # Resize image 28x28#
+    img_resized <- resize(img, w = w, h = h)#
+    # Set to grayscale#
+    grayimg <- channel(img_resized,"gray")#
+    # Path to file#
+    path <- paste(save_in, imgname, sep = "")#
+    # Save image#
+    writeImage(grayimg, path, quality = 70)#
+    # Print status#
+    print(paste("Done",i,sep = " "))},#
+    # Error function#
+    error = function(e){print(e)})#
+}
+convertGray <- function(save_in, out_file)#
+{#
+# Set wd where resized greyscale images are located#
+setwd(save_in)#
+#
+# Out file#
+#
+# List images in path#
+images <- list.files()#
+#
+# Set up df#
+df <- data.frame()#
+#
+# Set image size. In this case 28x28#
+img_size <- 28*28#
+#
+# Set label#
+label <- 1#
+#
+# Main loop. Loop over each image#
+for(i in 1:length(images))#
+{#
+    # Read image#
+    img <- readImage(images[i])#
+    # Get the image as a matrix#
+    img_matrix <- img@.Data#
+    # Coerce to a vector#
+    img_vector <- as.vector(t(img_matrix))#
+    # Add label#
+    vec <- c(label, img_vector)#
+    # Bind rows#
+    df <- rbind(df,vec)#
+    # Print status info#
+    print(paste("Done ", i, sep = ""))#
+}#
+#
+# Set names#
+names(df) <- c("label", paste("pixel", c(1:img_size)))#
+#
+# Write out dataset#
+write.csv(df, out_file, row.names = FALSE)#
+}#
+#
+v.save_in.1 <- "/Users/RvsL/python/facialLidogenerator/goodFaces/trainGood"#убрать закрывающий слэшшшшшш!#
+v.save_in.2 <- "/Users/RvsL/python/facialLidogenerator/badFaces/trainBad"#
+v.out_file.1 <- paste0(v.save_in.1, "/good.csv")#
+v.out_file.1 <- paste0(v.save_in.2, "/good.csv")#
+#
+convertGray(v.save_in.1, v.out_file.1)
+convertGray(v.save_in.2, v.out_file.2)
+df.1 <- read.csv(v.out_file.1)#
+df.2 <- read.csv(v.out_file.2)#
+#
+# Bind rows in a single dataset#
+df <- rbind(df.1, df.2)
+v.save_in.1 <- "/Users/RvsL/python/facialLidogenerator/goodFaces/trainGood"#убрать закрывающий слэшшшшшш!#
+v.save_in.2 <- "/Users/RvsL/python/facialLidogenerator/badFaces/trainBad"#
+v.out_file.1 <- paste0(v.save_in.1, "/good.csv")#
+v.out_file.2 <- paste0(v.save_in.2, "/good.csv")#
+#
+convertGray(v.save_in.1, v.out_file.1)#
+convertGray(v.save_in.2, v.out_file.2)#
+#
+df.1 <- read.csv(v.out_file.1)#
+df.2 <- read.csv(v.out_file.2)#
+#
+# Bind rows in a single dataset#
+df <- rbind(df.1, df.2)
+head(df)
+convertGray <- function(save_in, out_file, label)#
+{#
+# Set wd where resized greyscale images are located#
+setwd(save_in)#
+#
+# Out file#
+#
+# List images in path#
+images <- list.files()#
+#
+# Set up df#
+df <- data.frame()#
+#
+# Set image size. In this case 28x28#
+img_size <- 28*28#
+#
+# Set label#
+# label <- 1#
+#
+# Main loop. Loop over each image#
+for(i in 1:length(images))#
+{#
+    # Read image#
+    img <- readImage(images[i])#
+    # Get the image as a matrix#
+    img_matrix <- img@.Data#
+    # Coerce to a vector#
+    img_vector <- as.vector(t(img_matrix))#
+    # Add label#
+    vec <- c(label, img_vector)#
+    # Bind rows#
+    df <- rbind(df,vec)#
+    # Print status info#
+    print(paste("Done ", i, sep = ""))#
+}#
+#
+# Set names#
+names(df) <- c("label", paste("pixel", c(1:img_size)))#
+#
+# Write out dataset#
+write.csv(df, out_file, row.names = FALSE)#
+}#
+#
+v.save_in.1 <- "/Users/RvsL/python/facialLidogenerator/goodFaces/trainGood"#убрать закрывающий слэшшшшшш!#
+v.save_in.2 <- "/Users/RvsL/python/facialLidogenerator/badFaces/trainBad"#
+v.out_file.1 <- paste0(v.save_in.1, "/good.csv")#
+v.out_file.2 <- paste0(v.save_in.2, "/good.csv")#
+#
+convertGray(v.save_in.1, v.out_file.1, 1)#good#
+convertGray(v.save_in.2, v.out_file.2, 2)#bad#
+#
+df.1 <- read.csv(v.out_file.1)#
+df.2 <- read.csv(v.out_file.2)#
+#
+# Bind rows in a single dataset#
+df <- rbind(df.1, df.2)
+str(df)
+unique(df.label)
+unique(df$label)
+v.out_file.2 <- paste0(v.save_in.2, "/bad.csv")#
+#
+convertGray(v.save_in.1, v.out_file.1, 1)#good#
+convertGray(v.save_in.2, v.out_file.2, 2)#bad#
+#
+df.1 <- read.csv(v.out_file.1)#
+df.2 <- read.csv(v.out_file.2)#
+#
+# Bind rows in a single dataset#
+df <- rbind(df.1, df.2)
+convertGray(v.save_in.1, v.out_file.1, 1)#good#
+convertGray(v.save_in.2, v.out_file.2, 2)#bad#
+#
+df.1 <- read.csv(v.out_file.1)#
+df.2 <- read.csv(v.out_file.2)#
+#
+# Bind rows in a single dataset#
+df <- rbind(df.1, df.2)
+unique(df$label)
+ncol(df)
+names(df)
+library(h2o)#
+h2o.init(nthreads = -1)#
+#
+train_h2o <- as.h2o(df)#
+#nnet.model <- h2o.deeplearning(2:785,1,train_h2o,epochs=1e3)#
+nnet.model <- h2o.randomForest(2:785,1,train_h2o)
+v.local.wd <- "/Users/RvsL/python/facialLidogenerator/forNN_toClassify"#
+v.save_in.3 <- "/Users/RvsL/python/facialLidogenerator/forNN_toClassify/formatted/"#
+grayscalePics(v.local.wd, v.save_in.3)#
+v.out_file.3 <- paste0(v.save_in.3, "/classify.csv")#
+convertGray(v.save_in.3, v.out_file.3, 3)#unknown#
+df.3 <- read.csv(v.out_file.3)
+grayscalePics <- function(local.wd, save_in){#
+# Set wd where images are located#
+setwd("/Users/RvsL/python/facialLidogenerator/badFaces")#
+# Set d where to save images#
+save_in <- "/Users/RvsL/python/facialLidogenerator/badFaces/trainBad/"#
+# Load images names#
+images <- list.files()#
+# Set width#
+w <- 28#
+# Set height#
+h <- 28#
+#
+# Main loop resize images and set them to greyscale#
+for(i in 1:length(images))#
+{#
+    # Try-catch is necessary since some images#
+    # may not work.#
+    result <- tryCatch({#
+    # Image name#
+    imgname <- images[i]#
+    # Read image#
+    img <- readImage(imgname)#
+    # Resize image 28x28#
+    img_resized <- resize(img, w = w, h = h)#
+    # Set to grayscale#
+    grayimg <- channel(img_resized,"gray")#
+    # Path to file#
+    path <- paste(save_in, imgname, sep = "")#
+    # Save image#
+    writeImage(grayimg, path, quality = 70)#
+    # Print status#
+    print(paste("Done",i,sep = " "))},#
+    # Error function#
+    error = function(e){print(e)})#
+}#
+}
+v.local.wd <- "/Users/RvsL/python/facialLidogenerator/forNN_toClassify"#
+v.save_in.3 <- "/Users/RvsL/python/facialLidogenerator/forNN_toClassify/formatted/"#
+grayscalePics(v.local.wd, v.save_in.3)#
+v.out_file.3 <- paste0(v.save_in.3, "/classify.csv")#
+convertGray(v.save_in.3, v.out_file.3, 3)#unknown#
+df.3 <- read.csv(v.out_file.3)
+v.local.wd <- "/Users/RvsL/python/facialLidogenerator/forNN_toClassify"#
+v.save_in.3 <- "/Users/RvsL/python/facialLidogenerator/forNN_toClassify/formatted/"#
+grayscalePics(v.local.wd, v.save_in.3)
+h2o.shutdown(prompt=FALSE)
+#install.packages('imager',repos='http://cran.us.r-project.org')#
+require(EBImage)#
+#
+grayscalePics <- function(local.wd, save_in){#
+# Set wd where images are located#
+setwd(local.wd)#
+# Set d where to save images#
+#save_in <- "/Users/RvsL/python/facialLidogenerator/badFaces/trainBad/"#
+# Load images names#
+images <- list.files()#
+# Set width#
+w <- 28#
+# Set height#
+h <- 28#
+#
+# Main loop resize images and set them to greyscale#
+for(i in 1:length(images))#
+{#
+    # Try-catch is necessary since some images#
+    # may not work.#
+    result <- tryCatch({#
+    # Image name#
+    imgname <- images[i]#
+    # Read image#
+    img <- readImage(imgname)#
+    # Resize image 28x28#
+    img_resized <- resize(img, w = w, h = h)#
+    # Set to grayscale#
+    grayimg <- channel(img_resized,"gray")#
+    # Path to file#
+    path <- paste(save_in, imgname, sep = "")#
+    # Save image#
+    writeImage(grayimg, path, quality = 70)#
+    # Print status#
+    print(paste("Done",i,sep = " "))},#
+    # Error function#
+    error = function(e){print(e)})#
+}#
+}#
+#
+v.local.wd <- "/Users/RvsL/python/facialLidogenerator/goodFaces"#
+v.save_in <- "/Users/RvsL/python/facialLidogenerator/goodFaces/trainGood/"#
+grayscalePics(v.local.wd, v.save_in)#
+#
+v.local.wd <- "/Users/RvsL/python/facialLidogenerator/badFaces"#
+v.save_in <- "/Users/RvsL/python/facialLidogenerator/badFaces/trainBad/"#
+grayscalePics(v.local.wd, v.save_in)#
+###########################################
+#
+convertGray <- function(save_in, out_file, label)#
+{#
+# Set wd where resized greyscale images are located#
+setwd(save_in)#
+#
+# Out file#
+#
+# List images in path#
+images <- list.files()#
+#
+# Set up df#
+df <- data.frame()#
+#
+# Set image size. In this case 28x28#
+img_size <- 28*28#
+#
+# Set label#
+# label <- 1#
+#
+# Main loop. Loop over each image#
+for(i in 1:length(images))#
+{#
+    # Read image#
+    img <- readImage(images[i])#
+    # Get the image as a matrix#
+    img_matrix <- img@.Data#
+    # Coerce to a vector#
+    img_vector <- as.vector(t(img_matrix))#
+    # Add label#
+    vec <- c(label, img_vector)#
+    # Bind rows#
+    df <- rbind(df,vec)#
+    # Print status info#
+    print(paste("Done ", i, sep = ""))#
+}#
+#
+# Set names#
+names(df) <- c("label", paste("pixel", c(1:img_size)))#
+#
+# Write out dataset#
+write.csv(df, out_file, row.names = FALSE)#
+}#
+#
+v.save_in.1 <- "/Users/RvsL/python/facialLidogenerator/goodFaces/trainGood"#убрать закрывающий слэшшшшшш!#
+v.save_in.2 <- "/Users/RvsL/python/facialLidogenerator/badFaces/trainBad"#
+v.out_file.1 <- paste0(v.save_in.1, "/good.csv")#
+v.out_file.2 <- paste0(v.save_in.2, "/bad.csv")#
+#
+convertGray(v.save_in.1, v.out_file.1, 1)#good#
+convertGray(v.save_in.2, v.out_file.2, 2)#bad#
+#
+df.1 <- read.csv(v.out_file.1)#
+df.2 <- read.csv(v.out_file.2)#
+#
+# Bind rows in a single dataset#
+df <- rbind(df.1, df.2)#
+#########################################
+#поднимаем нейросетку и собственно ее тренируем#
+#
+library(h2o)#
+h2o.init(nthreads = -1)#
+#
+train_h2o <- as.h2o(df)#
+#nnet.model <- h2o.deeplearning(2:785,1,train_h2o,epochs=1e3)#
+nnet.model <- h2o.randomForest(2:785,1,train_h2o)#
+#
+#в переменную Х надо загрузить например одну строчку для каждого лица с какой то картинки#
+#очевидно что эти строчки должны быть приведены к такому же формату как и обучающие картинки#
+#
+v.local.wd <- "/Users/RvsL/python/facialLidogenerator/forNN_toClassify"#
+v.save_in.3 <- "/Users/RvsL/python/facialLidogenerator/forNN_toClassify/formatted/"#
+grayscalePics(v.local.wd, v.save_in.3)#
+v.out_file.3 <- paste0(v.save_in.3, "/classify.csv")#
+convertGray(v.save_in.3, v.out_file.3, 3)#unknown#
+df.3 <- read.csv(v.out_file.3)#
+predicted_class <- as.matrix(h2o.predict(nnet.model, as.h2o(X)))#
+#
+#потом надо не забыть ее вырубить, но не раньше чем она нам распознает парочку людей#
+#h2o.shutdown(prompt=FALSE)
+h2o.shutdown(prompt=FALSE)
+#install.packages('imager',repos='http://cran.us.r-project.org')#
+require(EBImage)#
+#
+grayscalePics <- function(local.wd, save_in){#
+# Set wd where images are located#
+setwd(local.wd)#
+# Set d where to save images#
+#save_in <- "/Users/RvsL/python/facialLidogenerator/badFaces/trainBad/"#
+# Load images names#
+images <- list.files()#
+# Set width#
+w <- 28#
+# Set height#
+h <- 28#
+#
+# Main loop resize images and set them to greyscale#
+for(i in 1:length(images))#
+{#
+    # Try-catch is necessary since some images#
+    # may not work.#
+    result <- tryCatch({#
+    # Image name#
+    imgname <- images[i]#
+    # Read image#
+    img <- readImage(imgname)#
+    # Resize image 28x28#
+    img_resized <- resize(img, w = w, h = h)#
+    # Set to grayscale#
+    grayimg <- channel(img_resized,"gray")#
+    # Path to file#
+    path <- paste(save_in, imgname, sep = "")#
+    # Save image#
+    writeImage(grayimg, path, quality = 70)#
+    # Print status#
+    print(paste("Done",i,sep = " "))},#
+    # Error function#
+    error = function(e){print(e)})#
+}#
+}#
+#
+v.local.wd <- "/Users/RvsL/python/facialLidogenerator/goodFaces"#
+v.save_in <- "/Users/RvsL/python/facialLidogenerator/goodFaces/trainGood/"#
+grayscalePics(v.local.wd, v.save_in)#
+#
+v.local.wd <- "/Users/RvsL/python/facialLidogenerator/badFaces"#
+v.save_in <- "/Users/RvsL/python/facialLidogenerator/badFaces/trainBad/"#
+grayscalePics(v.local.wd, v.save_in)#
+###########################################
+#
+convertGray <- function(save_in, out_file, label)#
+{#
+# Set wd where resized greyscale images are located#
+setwd(save_in)#
+#
+# Out file#
+#
+# List images in path#
+images <- list.files()#
+#
+# Set up df#
+df <- data.frame()#
+#
+# Set image size. In this case 28x28#
+img_size <- 28*28#
+#
+# Set label#
+# label <- 1#
+#
+# Main loop. Loop over each image#
+for(i in 1:length(images))#
+{#
+    # Read image#
+    img <- readImage(images[i])#
+    # Get the image as a matrix#
+    img_matrix <- img@.Data#
+    # Coerce to a vector#
+    img_vector <- as.vector(t(img_matrix))#
+    # Add label#
+    vec <- c(label, img_vector)#
+    # Bind rows#
+    df <- rbind(df,vec)#
+    # Print status info#
+    print(paste("Done ", i, sep = ""))#
+}#
+#
+# Set names#
+names(df) <- c("label", paste("pixel", c(1:img_size)))#
+#
+# Write out dataset#
+write.csv(df, out_file, row.names = FALSE)#
+}#
+#
+v.save_in.1 <- "/Users/RvsL/python/facialLidogenerator/goodFaces/trainGood"#убрать закрывающий слэшшшшшш!#
+v.save_in.2 <- "/Users/RvsL/python/facialLidogenerator/badFaces/trainBad"#
+v.out_file.1 <- paste0(v.save_in.1, "/good.csv")#
+v.out_file.2 <- paste0(v.save_in.2, "/bad.csv")#
+#
+convertGray(v.save_in.1, v.out_file.1, 1)#good#
+convertGray(v.save_in.2, v.out_file.2, 2)#bad#
+#
+df.1 <- read.csv(v.out_file.1)#
+df.2 <- read.csv(v.out_file.2)#
+#
+# Bind rows in a single dataset#
+df <- rbind(df.1, df.2)#
+#########################################
+#поднимаем нейросетку и собственно ее тренируем#
+#
+library(h2o)#
+h2o.init(nthreads = -1)#
+#
+train_h2o <- as.h2o(df)#
+#nnet.model <- h2o.deeplearning(2:785,1,train_h2o,epochs=1e3)#
+nnet.model <- h2o.randomForest(2:785,1,train_h2o)#
+#
+#в переменную Х надо загрузить например одну строчку для каждого лица с какой то картинки#
+#очевидно что эти строчки должны быть приведены к такому же формату как и обучающие картинки#
+#
+v.local.wd <- "/Users/RvsL/python/facialLidogenerator/forNN_toClassify"#
+v.save_in.3 <- "/Users/RvsL/python/facialLidogenerator/forNN_toClassify/formatted/"#
+grayscalePics(v.local.wd, v.save_in.3)#
+v.out_file.3 <- paste0(v.save_in.3, "/classify.csv")#
+convertGray(v.save_in.3, v.out_file.3, 3)#unknown#
+df.3 <- read.csv(v.out_file.3)#
+predicted_class <- as.matrix(h2o.predict(nnet.model, as.h2o(X)))#
+#
+#потом надо не забыть ее вырубить, но не раньше чем она нам распознает парочку людей#
+#h2o.shutdown(prompt=FALSE)
+X <- df.3[,2:785]#
+#
+predicted_class <- as.matrix(h2o.predict(nnet.model, as.h2o(X)))
+head(predicted_class)
+View(predicted_cladd)
+View(predicted_class)
+predicted_class
+#install.packages('imager',repos='http://cran.us.r-project.org')#
+require(EBImage)#
+#
+grayscalePics <- function(local.wd, save_in){#
+# Set wd where images are located#
+setwd(local.wd)#
+# Set d where to save images#
+#save_in <- "/Users/RvsL/python/facialLidogenerator/badFaces/trainBad/"#
+# Load images names#
+images <- list.files()#
+# Set width#
+w <- 100#
+# Set height#
+h <- 100#
+#
+# Main loop resize images and set them to greyscale#
+for(i in 1:length(images))#
+{#
+    # Try-catch is necessary since some images#
+    # may not work.#
+    result <- tryCatch({#
+    # Image name#
+    imgname <- images[i]#
+    # Read image#
+    img <- readImage(imgname)#
+    # Resize image 28x28#
+    img_resized <- resize(img, w = w, h = h)#
+    # Set to grayscale#
+    grayimg <- channel(img_resized,"gray")#
+    # Path to file#
+    path <- paste(save_in, imgname, sep = "")#
+    # Save image#
+    writeImage(grayimg, path, quality = 70)#
+    # Print status#
+    print(paste("Done",i,sep = " "))},#
+    # Error function#
+    error = function(e){print(e)})#
+}#
+}#
+#
+v.local.wd <- "/Users/RvsL/python/facialLidogenerator/goodFaces"#
+v.save_in <- "/Users/RvsL/python/facialLidogenerator/goodFaces/trainGood/"#
+grayscalePics(v.local.wd, v.save_in)#
+#
+v.local.wd <- "/Users/RvsL/python/facialLidogenerator/badFaces"#
+v.save_in <- "/Users/RvsL/python/facialLidogenerator/badFaces/trainBad/"#
+grayscalePics(v.local.wd, v.save_in)#
+###########################################
+#
+convertGray <- function(save_in, out_file, label)#
+{#
+# Set wd where resized greyscale images are located#
+setwd(save_in)#
+#
+# Out file#
+#
+# List images in path#
+images <- list.files()#
+#
+# Set up df#
+df <- data.frame()#
+#
+# Set image size. In this case 28x28#
+img_size <- 28*28#
+#
+# Set label#
+# label <- 1#
+#
+# Main loop. Loop over each image#
+for(i in 1:length(images))#
+{#
+    # Read image#
+    img <- readImage(images[i])#
+    # Get the image as a matrix#
+    img_matrix <- img@.Data#
+    # Coerce to a vector#
+    img_vector <- as.vector(t(img_matrix))#
+    # Add label#
+    vec <- c(label, img_vector)#
+    # Bind rows#
+    df <- rbind(df,vec)#
+    # Print status info#
+    print(paste("Done ", i, sep = ""))#
+}#
+#
+# Set names#
+names(df) <- c("label", paste("pixel", c(1:img_size)))#
+#
+# Write out dataset#
+write.csv(df, out_file, row.names = FALSE)#
+}#
+#
+v.save_in.1 <- "/Users/RvsL/python/facialLidogenerator/goodFaces/trainGood"#убрать закрывающий слэшшшшшш!#
+v.save_in.2 <- "/Users/RvsL/python/facialLidogenerator/badFaces/trainBad"#
+v.out_file.1 <- paste0(v.save_in.1, "/good.csv")#
+v.out_file.2 <- paste0(v.save_in.2, "/bad.csv")#
+#
+convertGray(v.save_in.1, v.out_file.1, 1)#good#
+convertGray(v.save_in.2, v.out_file.2, 2)#bad#
+#
+df.1 <- read.csv(v.out_file.1)#
+df.2 <- read.csv(v.out_file.2)#
+#
+# Bind rows in a single dataset#
+df <- rbind(df.1, df.2)#
+#########################################
+#поднимаем нейросетку и собственно ее тренируем#
+#
+library(h2o)#
+h2o.init(nthreads = -1)#
+#
+train_h2o <- as.h2o(df)#
+#nnet.model <- h2o.deeplearning(2:785,1,train_h2o,epochs=1e3)#
+nnet.model <- h2o.randomForest(2:785,1,train_h2o)#
+#
+#в переменную Х надо загрузить например одну строчку для каждого лица с какой то картинки#
+#очевидно что эти строчки должны быть приведены к такому же формату как и обучающие картинки#
+#
+v.local.wd <- "/Users/RvsL/python/facialLidogenerator/forNN_toClassify"#
+v.save_in.3 <- "/Users/RvsL/python/facialLidogenerator/forNN_toClassify/formatted/"#
+grayscalePics(v.local.wd, v.save_in.3)#
+v.out_file.3 <- paste0(v.save_in.3, "/classify.csv")#
+convertGray(v.save_in.3, v.out_file.3, 3)#unknown#
+df.3 <- read.csv(v.out_file.3)#
+X <- df.3[,2:785]#
+#
+predicted_class <- as.matrix(h2o.predict(nnet.model, as.h2o(X)))#
+#
+#потом надо не забыть ее вырубить, но не раньше чем она нам распознает парочку людей#
+#h2o.shutdown(prompt=FALSE)
+h2o.shutdown(prompt=FALSE)
+library(h2o)#
+h2o.init(nthreads = -1)#
+#
+train_h2o <- as.h2o(df)#
+#nnet.model <- h2o.deeplearning(2:785,1,train_h2o,epochs=1e3)#
+nnet.model <- h2o.randomForest(2:785,1,train_h2o)#
+#
+#в переменную Х надо загрузить например одну строчку для каждого лица с какой то картинки#
+#очевидно что эти строчки должны быть приведены к такому же формату как и обучающие картинки#
+#
+v.local.wd <- "/Users/RvsL/python/facialLidogenerator/forNN_toClassify"#
+v.save_in.3 <- "/Users/RvsL/python/facialLidogenerator/forNN_toClassify/formatted/"#
+grayscalePics(v.local.wd, v.save_in.3)#
+v.out_file.3 <- paste0(v.save_in.3, "/classify.csv")#
+convertGray(v.save_in.3, v.out_file.3, 3)#unknown#
+df.3 <- read.csv(v.out_file.3)#
+X <- df.3[,2:785]#
+#
+predicted_class <- as.matrix(h2o.predict(nnet.model, as.h2o(X)))#
+#
+#потом надо не забыть ее вырубить, но не раньше чем она нам распознает парочку людей#
+h2o.shutdown(prompt=FALSE)
+library(h2o)#
+h2o.init(nthreads = -1, max_mem_size = 3G)
+h2o.init(nthreads = -1, max_mem_size = "3G")
+train_h2o <- as.h2o(df)
+nnet.model <- h2o.randomForest(2:785,1,train_h2o)
+predicted_class <- as.matrix(h2o.predict(nnet.model, as.h2o(X)))
+predicted_class
+v.local.wd <- "/Users/RvsL/python/facialLidogenerator/forNN_toClassify"#
+v.save_in.3 <- "/Users/RvsL/python/facialLidogenerator/forNN_toClassify/formatted/"#
+grayscalePics(v.local.wd, v.save_in.3)#
+v.out_file.3 <- paste0(v.save_in.3, "/classify.csv")#
+convertGray(v.save_in.3, v.out_file.3, 3)#unknown#
+df.3 <- read.csv(v.out_file.3)#
+X <- df.3[,2:785]
+predicted_class <- as.matrix(h2o.predict(nnet.model, as.h2o(X)))
+predicted_class
+res <- as.matrix(predicted_class)
+res
+round(res)
+h2o.shutdown(prompt=FALSE)
+library(shiny)
+setwd("/Users/RvsL/RRR/shinyNSEI")
+source('ui.r')
+setwd("/Users/RvsL/RRR")
+runApp('shinyNSEI')
