@@ -1,0 +1,93 @@
+Sys.setlocale(,"ru_RU")
+library(jsonlite)
+library(dplyr)
+
+vac.list <- c(
+'ит+директор',
+'директор+ит',
+'начальник+ит+отдела',
+'начальник+отдела+разработки+по',
+'руководитель+отдела+разработки+по',
+'cio',
+'chief+information+officer',
+'it+director',
+'teamlead')
+
+
+vacanciesdf <- data.frame(
+    Name = character(),  # Название вакансии
+    Employer = character(),  # Название компании
+    Currency = character(), # Валюта
+    From = character(), # Минимальная оплата
+    Area = character(), # Город
+    Requerement = character(), 
+    EmpURL = character(), 
+    VacURL = character(), 
+    published_at = character(), 
+    created_at = character(),stringsAsFactors = T) # Требуемые навыки
+
+for (i in 1:length(vac.list)){
+#cat(URLencode(vac.list[i]),'\n')}
+
+
+for (pageNum in 0:100) { # Всего страниц
+	
+	tryCatch(
+        {
+			querytext <- "https://api.hh.ru/vacancies?text=\'%text%\'&page="
+			data <- fromJSON(paste0(gsub("%text%", URLencode(vac.list[i]), querytext), pageNum))
+
+			vacanciesdf <- rbind(vacanciesdf, data.frame(
+											data$items$name, # название вакансии
+											data$items$area$name, # Город
+											data$items$salary$currency, # Валюта
+											data$items$salary$from, # Минимальная оплата
+											data$items$employer$name, # Название компании
+											data$items$snippet$requirement, # Требуемые навыки
+											data$items$employer$url,
+											data$items$alternate_url,
+											data$items$published_at,
+											data$items$created_at
+											))
+
+
+		print(paste0("Upload pages:", pageNum + 1))
+		},
+			error=function(cond) {
+		})
+
+				
+    Sys.sleep(3)
+}}
+
+# Сделаем приличные названия столбцов
+names(vacanciesdf) <- c('Name', "Area", "Currency", "Salary", "Employer", "Skills",'EmpURL','VacURL','published_at','created_at') 
+# Вместо зарплаты NA будет нулевая
+vacanciesdf[is.na(vacanciesdf$Salary),]$Salary <- 0 
+# Переведем зарплаты в рубли
+vacanciesdf[!is.na(vacanciesdf$Currency) & vacanciesdf$Currency == 'USD',]$Salary <- vacanciesdf[!is.na(vacanciesdf$Currency) & vacanciesdf$Currency == 'USD',]$Salary * 57
+vacanciesdf[!is.na(vacanciesdf$Currency) & vacanciesdf$Currency == 'EUR',]$Salary <- vacanciesdf[!is.na(vacanciesdf$Currency) & vacanciesdf$Currency == 'EUR',]$Salary * 80
+vacanciesdf[!is.na(vacanciesdf$Currency) & vacanciesdf$Currency == 'UAH',]$Salary <- vacanciesdf[!is.na(vacanciesdf$Currency) & vacanciesdf$Currency == 'UAH',]$Salary * 2.2
+vacanciesdf$Area <- as.character(vacanciesdf$Area)
+
+v <- vacanciesdf %>% filter(Area == 'Москва') %>% 
+mutate(published_at = as.POSIXct(as.character(published_at), format="%Y-%m-%dT%H:%M:%S%z")) %>%
+mutate(created_at = as.POSIXct(as.character(created_at), format="%Y-%m-%dT%H:%M:%S%z"))
+
+cat('total records = ', nrow(v))
+v <- v[!duplicated(v), ]
+cat('unique records = ', nrow(v))
+
+head(v)
+fname <- paste(format(Sys.time(), "%Y-%m-%d %I-%p"), "csv", sep = ".")
+fname <- paste(format(Sys.time(), "%Y%m%d"), "csv", sep = ".")
+fname <- paste0('hhvac',fname)
+write.table(v, fname, row.names=F, sep=';')
+fname
+
+### уберем уже отобранное
+
+a <- read.table('hhvac20181214.csv', sep=';') %>% select(VacURL) %>% set.names(c('prevVac'))
+b <- merge(v, a, by.x = 'VacURL', by.y = 'prevVac', all.x = T) %>% 
+mutate(ina = is.na(prevVac)) %>% filter(prevVac == True)
+write.table(b, 'actualHHVac', row.names=F, sep=';')
